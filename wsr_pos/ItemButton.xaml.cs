@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -10,10 +9,7 @@ namespace wsr_pos
 	/// </summary>
 	public partial class ItemButton : UserControl
     {
-		Item mItem;
-        private string mName;
-        private string mComment;
-        private string mPrice;
+		private Item mItem;
 
         private TextBlock mTextBlockName;
         private TextBlock mTextBlockComment;
@@ -26,7 +22,6 @@ namespace wsr_pos
 			mItem = item;
 			setWidget();
 			setColor();
-
 		}
 
 		private void setWidget()
