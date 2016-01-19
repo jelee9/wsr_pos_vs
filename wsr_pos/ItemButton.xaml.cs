@@ -10,6 +10,7 @@ namespace wsr_pos
 	/// </summary>
 	public partial class ItemButton : UserControl
     {
+		Item mItem;
         private string mName;
         private string mComment;
         private string mPrice;
@@ -18,20 +19,14 @@ namespace wsr_pos
         private TextBlock mTextBlockComment;
         private TextBlock mTextBlockPrice;
 
-        public ItemButton(string name, string comment, uint price)
-        {
-            InitializeComponent();
-
-            setData(name, comment, price);
-            setWidget();
-            setColor(MetrialColor.Name.LightGreen);
-        }
-
-		private void setData(string name, string comment, uint price)
+		public ItemButton(Item item)
 		{
-			mName = name;
-			mComment = comment;
-			mPrice = string.Format("{0:N0}", price);
+			InitializeComponent();
+
+			mItem = item;
+			setWidget();
+			setColor();
+
 		}
 
 		private void setWidget()
@@ -47,19 +42,19 @@ namespace wsr_pos
 			mTextBlockName = new TextBlock();
 			mTextBlockName.HorizontalAlignment = HorizontalAlignment.Center;
 			mTextBlockName.VerticalAlignment = VerticalAlignment.Center;
-			mTextBlockName.Text = mName;
+			mTextBlockName.Text = mItem.getName();
 
 			mTextBlockComment = new TextBlock();
 			mTextBlockComment.HorizontalAlignment = HorizontalAlignment.Center;
 			mTextBlockComment.VerticalAlignment = VerticalAlignment.Center;
 			mTextBlockComment.FontSize = 10;
 			mTextBlockComment.FontStyle = FontStyles.Italic;
-			mTextBlockComment.Text = mComment;
+			mTextBlockComment.Text = mItem.getComment();
 
 			mTextBlockPrice = new TextBlock();
 			mTextBlockPrice.HorizontalAlignment = HorizontalAlignment.Center;
 			mTextBlockPrice.VerticalAlignment = VerticalAlignment.Center;
-			mTextBlockPrice.Text = mPrice;
+			mTextBlockPrice.Text = string.Format("{0:N0}", mItem.getPrice());
 
 			addTextBlock(mTextBlockName, 0);
 
@@ -84,17 +79,17 @@ namespace wsr_pos
 			Grid.SetRow(text_block, index);
 		}
 
-		private void setColor(MetrialColor.Name color_name)
+		private void setColor()
         {
             Style style = new Style();
 
-            style.Setters.Add(new Setter(BackgroundProperty, MetrialColor.getBrush(color_name, 3)));
+            style.Setters.Add(new Setter(BackgroundProperty, MetrialColor.getBrush(mItem.getColorName(), 3)));
 			style.Setters.Add(new Setter(ForegroundProperty, MetrialColor.getBrush(MetrialColor.Name.White)));
 
 			Trigger mouse_over_trigger = new Trigger();
 			mouse_over_trigger.Property = UIElement.IsMouseOverProperty;
 			mouse_over_trigger.Value = true;
-			mouse_over_trigger.Setters.Add(new Setter(BackgroundProperty, MetrialColor.getBrush(color_name, 4)));
+			mouse_over_trigger.Setters.Add(new Setter(BackgroundProperty, MetrialColor.getBrush(mItem.getColorName(), 4)));
 			style.Triggers.Add(mouse_over_trigger);
 
 			ControlTemplate control_template = new ControlTemplate(typeof(Button));
@@ -115,55 +110,6 @@ namespace wsr_pos
 			style.Setters.Add(new Setter(TemplateProperty, control_template));
 
 			button.Style = style;
-		}
-
-		private Style Merge(Style style1, Style style2)
-		{
-			Style style = new Style();
-
-			_Merge(style, style1);
-			_Merge(style, style2);
-
-			return style;
-		}
-
-		private void _Merge(Style style1, Style style2)
-		{
-			if (style1 == null)
-			{
-				throw new ArgumentNullException("style1");
-			}
-
-			if (style2 == null)
-			{
-				throw new ArgumentNullException("style2");
-			}
-
-			if (style1.TargetType.IsAssignableFrom(style2.TargetType))
-			{
-				style1.TargetType = style2.TargetType;
-			}
-
-			if (style2.BasedOn != null)
-			{
-				Merge(style1, style2.BasedOn);
-			}
-
-			foreach (SetterBase currentSetter in style2.Setters)
-			{
-				style1.Setters.Add(currentSetter);
-			}
-
-			foreach (TriggerBase currentTrigger in style2.Triggers)
-			{
-				style1.Triggers.Add(currentTrigger);
-			}
-
-			// This code is only needed when using DynamicResources.
-			foreach (object key in style2.Resources.Keys)
-			{
-				style1.Resources[key] = style2.Resources[key];
-			}
 		}
 
 		public delegate void ClickEvent(object sender, RoutedEventArgs e);
