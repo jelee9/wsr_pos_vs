@@ -58,7 +58,7 @@ namespace wsr_pos
 
 			addTextBlock(mTextBlockName, 0);
 
-			if (mComment != "")
+			if (mItem.getComment() != "")
 			{
 				addTextBlock(mTextBlockComment, 1);
 				addTextBlock(mTextBlockPrice, 2);

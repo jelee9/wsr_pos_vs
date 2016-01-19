@@ -24,7 +24,8 @@ namespace wsr_pos
         {
             InitializeComponent();
 
-			ItemButton item_button = new ItemButton("이름", "하하하하하하하", 1000);
+			Item item = new Item(0, 0, "이종은", "동해물과 백두산이 마르고 닳도록", 700000, false, false, false, 0, 0, MetrialColor.Name.Brown);
+			ItemButton item_button = new ItemButton(item);
 
 			item_button.setPosition(100, 100, 150, 80);
 
@@ -35,7 +36,8 @@ namespace wsr_pos
 
 		private void button_click(object sender, RoutedEventArgs e)
 		{
-			ItemButton item_button = new ItemButton("이종은", "", 1000);
+			Item item = new Item(0, 0, "신선주", "", 1234567890, false, false, false, 0, 0, MetrialColor.Name.DeepOrange);
+			ItemButton item_button = new ItemButton(item);
 			item_button.setPosition(100, 300, 150, 80);
 			canvas.Children.Add(item_button);
 		}
