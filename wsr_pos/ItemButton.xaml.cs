@@ -10,13 +10,13 @@ namespace wsr_pos
 	/// </summary>
 	public partial class ItemButton : UserControl
     {
-        private string Name;
-        private string Comment;
-        private string Price;
+        private string mName;
+        private string mComment;
+        private string mPrice;
 
-        private TextBlock TextBlockName;
-        private TextBlock TextBlockComment;
-        private TextBlock TextBlockPrice;
+        private TextBlock mTextBlockName;
+        private TextBlock mTextBlockComment;
+        private TextBlock mTextBlockPrice;
 
         public ItemButton(string name, string comment, uint price)
         {
@@ -29,9 +29,9 @@ namespace wsr_pos
 
 		private void setData(string name, string comment, uint price)
 		{
-			Name = name;
-			Comment = comment;
-			Price = string.Format("{0:N0}", price);
+			mName = name;
+			mComment = comment;
+			mPrice = string.Format("{0:N0}", price);
 		}
 
 		private void setWidget()
@@ -44,33 +44,33 @@ namespace wsr_pos
 
 			button.Click += onClick;
 
-			TextBlockName = new TextBlock();
-			TextBlockName.HorizontalAlignment = HorizontalAlignment.Center;
-			TextBlockName.VerticalAlignment = VerticalAlignment.Center;
-			TextBlockName.Text = Name;
+			mTextBlockName = new TextBlock();
+			mTextBlockName.HorizontalAlignment = HorizontalAlignment.Center;
+			mTextBlockName.VerticalAlignment = VerticalAlignment.Center;
+			mTextBlockName.Text = mName;
 
-			TextBlockComment = new TextBlock();
-			TextBlockComment.HorizontalAlignment = HorizontalAlignment.Center;
-			TextBlockComment.VerticalAlignment = VerticalAlignment.Center;
-			TextBlockComment.FontSize = 10;
-			TextBlockComment.FontStyle = FontStyles.Italic;
-			TextBlockComment.Text = Comment;
+			mTextBlockComment = new TextBlock();
+			mTextBlockComment.HorizontalAlignment = HorizontalAlignment.Center;
+			mTextBlockComment.VerticalAlignment = VerticalAlignment.Center;
+			mTextBlockComment.FontSize = 10;
+			mTextBlockComment.FontStyle = FontStyles.Italic;
+			mTextBlockComment.Text = mComment;
 
-			TextBlockPrice = new TextBlock();
-			TextBlockPrice.HorizontalAlignment = HorizontalAlignment.Center;
-			TextBlockPrice.VerticalAlignment = VerticalAlignment.Center;
-			TextBlockPrice.Text = Price;
+			mTextBlockPrice = new TextBlock();
+			mTextBlockPrice.HorizontalAlignment = HorizontalAlignment.Center;
+			mTextBlockPrice.VerticalAlignment = VerticalAlignment.Center;
+			mTextBlockPrice.Text = mPrice;
 
-			addTextBlock(TextBlockName, 0);
+			addTextBlock(mTextBlockName, 0);
 
-			if (Comment != "")
+			if (mComment != "")
 			{
-				addTextBlock(TextBlockComment, 1);
-				addTextBlock(TextBlockPrice, 2);
+				addTextBlock(mTextBlockComment, 1);
+				addTextBlock(mTextBlockPrice, 2);
 			}
 			else
 			{
-				addTextBlock(TextBlockPrice, 1);
+				addTextBlock(mTextBlockPrice, 1);
 			}
 		}
 

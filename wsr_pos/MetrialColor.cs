@@ -7,7 +7,7 @@ using System.Windows.Media;
 
 namespace wsr_pos
 {
-    class MetrialColor
+	public class MetrialColor
     {
 		public enum Name
 		{
