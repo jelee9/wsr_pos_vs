@@ -120,7 +120,7 @@ namespace wsr_pos
 			button.Style = style;
 		}
 
-		public delegate void ClickEvent(object sender, RoutedEventArgs e);
+		public delegate void ClickEvent(object sender, RoutedEventArgs e, Item item);
 
 		public event ClickEvent Click;
 
@@ -128,7 +128,7 @@ namespace wsr_pos
 		{
 			if (Click != null)
 			{
-				Click(sender, e);
+				Click(sender, e, mItem);
 			}
 		}
 

@@ -39,12 +39,12 @@ namespace wsr_pos
 			canvas.Children.Add(item_canvas);
         }
 
-		private void button_click(object sender, RoutedEventArgs e)
+		private void button_click(object sender, RoutedEventArgs e, Item item)
 		{
 			for (int i = 0; i < 10000; i++)
 			{
-				Item item = new Item(0, 0, "신선주", "", 1234567890, false, false, false, 0, 0, MetrialColor.Name.DeepOrange);
-				MenuItemButton item_button = new MenuItemButton(item);
+				Item item2 = new Item(0, 0, "신선주", "", 1234567890, false, false, false, 0, 0, MetrialColor.Name.DeepOrange);
+				MenuItemButton item_button = new MenuItemButton(item2);
 				//item_button.setPosition(100, 300, 150, 80);
 				canvas.Children.Add(item_button);
 
