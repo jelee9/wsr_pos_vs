@@ -7,7 +7,7 @@ namespace wsr_pos
 	/// <summary>
 	/// Interaction logic for ItemButton.xaml
 	/// </summary>
-	public partial class ItemButton : UserControl
+	public partial class MenuItemButton : UserControl
     {
 		private Item mItem;
 
@@ -15,7 +15,7 @@ namespace wsr_pos
         private TextBlock mTextBlockComment;
         private TextBlock mTextBlockPrice;
 
-		public ItemButton(Item item)
+		public MenuItemButton(Item item)
 		{
 			InitializeComponent();
 

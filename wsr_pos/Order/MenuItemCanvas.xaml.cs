@@ -18,11 +18,11 @@ namespace wsr_pos.Order
 	/// <summary>
 	/// Interaction logic for ItemCanvas.xaml
 	/// </summary>
-	public partial class ItemCanvas : UserControl
+	public partial class MenuItemCanvas : UserControl
 	{
 		List<Item> mItemList;
 
-		public ItemCanvas(List<Item> item_list = null)
+		public MenuItemCanvas(List<Item> item_list = null)
 		{
 			InitializeComponent();
 
@@ -39,7 +39,7 @@ namespace wsr_pos.Order
 
 			foreach(Item item in mItemList)
 			{
-				ItemButton item_button = new ItemButton(item);
+				MenuItemButton item_button = new MenuItemButton(item);
 				canvas.Children.Add(item_button);
 			}
 		}

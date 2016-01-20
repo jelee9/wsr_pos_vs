@@ -26,7 +26,7 @@ namespace wsr_pos
             InitializeComponent();
 
 			Item item = new Item(0, 0, "이종은", "동해물과 백두산이 마르고 닳도록", 700000, false, false, false, 0, 0, MetrialColor.Name.Brown);
-			ItemButton item_button = new ItemButton(item);
+			MenuItemButton item_button = new MenuItemButton(item);
 
 			//item_button.setPosition(100, 100, 150, 80);
 
@@ -34,7 +34,7 @@ namespace wsr_pos
 
 			item_button.Click += button_click;
 
-			ItemCanvas item_canvas = new ItemCanvas();
+			MenuItemCanvas item_canvas = new MenuItemCanvas();
 			item_canvas.setPosition(0, 400, 1280, 400);
 			canvas.Children.Add(item_canvas);
         }
@@ -44,7 +44,7 @@ namespace wsr_pos
 			for (int i = 0; i < 10000; i++)
 			{
 				Item item = new Item(0, 0, "신선주", "", 1234567890, false, false, false, 0, 0, MetrialColor.Name.DeepOrange);
-				ItemButton item_button = new ItemButton(item);
+				MenuItemButton item_button = new MenuItemButton(item);
 				//item_button.setPosition(100, 300, 150, 80);
 				canvas.Children.Add(item_button);
 
