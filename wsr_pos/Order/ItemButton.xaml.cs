@@ -22,6 +22,7 @@ namespace wsr_pos
 			mItem = item;
 			setWidget();
 			setColor();
+			setPosition();
 		}
 
 		private void setWidget()
@@ -81,19 +82,31 @@ namespace wsr_pos
             style.Setters.Add(new Setter(BackgroundProperty, MetrialColor.getBrush(mItem.getColorName(), 3)));
 			style.Setters.Add(new Setter(ForegroundProperty, MetrialColor.getBrush(MetrialColor.Name.White)));
 
-			Trigger mouse_over_trigger = new Trigger();
-			mouse_over_trigger.Property = UIElement.IsMouseOverProperty;
-			mouse_over_trigger.Value = true;
-			mouse_over_trigger.Setters.Add(new Setter(BackgroundProperty, MetrialColor.getBrush(mItem.getColorName(), 4)));
-			style.Triggers.Add(mouse_over_trigger);
+			Trigger button_pressed_trigger = new Trigger();
+			//mouse_over_trigger.Property = UIElement.IsMouseOverProperty;
+			button_pressed_trigger.Property = Button.IsPressedProperty;
+			button_pressed_trigger.Value = true;
+			button_pressed_trigger.Setters.Add(new Setter(BackgroundProperty, MetrialColor.getBrush(mItem.getColorName(), 4)));
+			button_pressed_trigger.Setters.Add(new Setter(BorderThicknessProperty, new Thickness(5)));
+			button_pressed_trigger.Setters.Add(new Setter(BorderBrushProperty, MetrialColor.getBrush(mItem.getColorName(), 1)));
+			style.Triggers.Add(button_pressed_trigger);
 
 			ControlTemplate control_template = new ControlTemplate(typeof(Button));
 			var border = new FrameworkElementFactory(typeof(Border));
+			border.Name = "button_border";
 			border.SetValue(BorderThicknessProperty, new Thickness(0));
-			border.SetValue(BorderBrushProperty, Brushes.Black);
+			border.SetValue(BorderBrushProperty, MetrialColor.getBrush(mItem.getColorName(), 3));
 			var binding = new TemplateBindingExtension();
 			binding.Property = BackgroundProperty;
 			border.SetValue(BackgroundProperty, binding);
+			
+			/* border color change on mouse pressed
+			Trigger mouse_over_trigger_border = new Trigger();
+			mouse_over_trigger_border.Property = Button.IsPressedProperty;
+			mouse_over_trigger_border.Value = true;
+			mouse_over_trigger_border.Setters.Add(new Setter(BorderBrushProperty, MetrialColor.getBrush(mItem.getColorName(), 3), "button_border"));
+			control_template.Triggers.Add(mouse_over_trigger_border);
+			*/
 
 			FrameworkElementFactory content_presenter = new FrameworkElementFactory(typeof(ContentPresenter));
 			content_presenter.SetValue(ContentPresenter.HorizontalAlignmentProperty, HorizontalAlignment.Center);
@@ -119,12 +132,16 @@ namespace wsr_pos
 			}
 		}
 
-		public void setPosition(int x, int y, int w, int h)
+		private void setPosition()
 		{
+			Width = 130;
+			Height = 70;
+
+			uint x = 30 + ((mItem.getPositionX() + 1) * 20) + (mItem.getPositionX() * 130);
+			uint y = 0 + ((mItem.getPositionY() + 1) * 20) + (mItem.getPositionY() * 70);
+
 			Canvas.SetLeft(this, x);
 			Canvas.SetTop(this, y);
-			Width = w;
-			Height = h;
 		}
     }
 }
