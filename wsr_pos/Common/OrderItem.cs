@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace wsr_pos.Common
+namespace wsr_pos
 {
-	class OrderItem
+	public class OrderItem
 	{
 		public enum DiscountType
 		{

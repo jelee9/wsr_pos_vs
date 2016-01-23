@@ -100,11 +100,25 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Order\OrderItem\CircleButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Order\OrderItem\OrderItemButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\MetrialColor.cs" />
     <Compile Include="Order\MenuItem\MenuItemCanvas.xaml.cs">
       <DependentUpon>MenuItemCanvas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Order\OrderItem\CircleButton.xaml.cs">
+      <DependentUpon>CircleButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Order\OrderItem\OrderItemButton.xaml.cs">
+      <DependentUpon>OrderItemButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -131,6 +145,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resource\add_circle_button.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
