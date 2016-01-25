@@ -20,3 +20,4 @@ D:\My_Project\wsr_pos_vs\wsr_pos_vs\wsr_pos\obj\x64\Debug\wsr_pos.Properties.Res
 D:\My_Project\wsr_pos_vs\wsr_pos_vs\wsr_pos\obj\x64\Debug\wsr_pos.csproj.GenerateResource.Cache
 D:\My_Project\wsr_pos_vs\wsr_pos_vs\wsr_pos\obj\x64\Debug\wsr_pos.exe
 D:\My_Project\wsr_pos_vs\wsr_pos_vs\wsr_pos\obj\x64\Debug\wsr_pos.pdb
+D:\My_Project\wsr_pos_vs\wsr_pos_vs\wsr_pos\obj\x64\Debug\wsr_pos.csprojResolveAssemblyReference.cache

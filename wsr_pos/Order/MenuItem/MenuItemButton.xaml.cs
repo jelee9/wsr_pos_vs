@@ -4,6 +4,8 @@ using System.Windows.Media;
 
 namespace wsr_pos
 {
+	public delegate void MenuItemButtonClickEvent(Item item);
+
 	/// <summary>
 	/// Interaction logic for ItemButton.xaml
 	/// </summary>
@@ -120,15 +122,13 @@ namespace wsr_pos
 			button.Style = style;
 		}
 
-		public delegate void ClickEvent(object sender, RoutedEventArgs e, Item item);
-
-		public event ClickEvent Click;
+		public event MenuItemButtonClickEvent Click;
 
 		public void onClick(object sender, RoutedEventArgs e)
 		{
 			if (Click != null)
 			{
-				Click(sender, e, mItem);
+				Click(mItem);
 			}
 		}
 

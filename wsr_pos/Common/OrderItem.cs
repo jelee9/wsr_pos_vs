@@ -29,6 +29,16 @@ namespace wsr_pos
 		public OrderItem(Item item)
 		{
 			mItem = item;
+			mAmount = 1;
+			mSubTotalPrice = 0;
+			mDiscountType = DiscountType.None;
+			mDiscountPrice = 0;
+			mDiscountPercent = 0;
+			mEnuriPrice = 0;
+			mEnuriPercent = 0;
+			mTotalPrice = 0;
+
+			recalculation();
 		}
 
 		public Item getItem()
