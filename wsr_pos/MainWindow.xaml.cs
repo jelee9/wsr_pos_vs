@@ -91,6 +91,8 @@ namespace wsr_pos
 				mOrderItemList.Add(order_item);
 
 				OrderItemButton btn = new OrderItemButton(order_item);
+				btn.Width = 800;
+				btn.Height = 50;
 				mORderButtonSTackPanel.Children.Add(btn);
 			}
 		}
