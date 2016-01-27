@@ -17,7 +17,7 @@ namespace wsr_pos
 		};
 
 		private Item mItem;
-		private uint mAmount;
+		private uint mQuantity;
 		private uint mSubTotalPrice;
 		private DiscountType mDiscountType;
 		private uint mDiscountPrice;
@@ -29,7 +29,7 @@ namespace wsr_pos
 		public OrderItem(Item item)
 		{
 			mItem = item;
-			mAmount = 1;
+			mQuantity = 1;
 			mSubTotalPrice = 0;
 			mDiscountType = DiscountType.None;
 			mDiscountPrice = 0;
@@ -46,22 +46,22 @@ namespace wsr_pos
 			return mItem;
 		}
 
-		public uint getAmount()
+		public uint getQuantity()
 		{
-			return mAmount;
+			return mQuantity;
 		}
 
-		public void increaseItem(uint amount = 1)
+		public void increaseQuantity(uint amount = 1)
 		{
-			mAmount = mAmount + amount;
+			mQuantity = mQuantity + amount;
 			recalculation();
 		}
 
-		public void decreaseItem(uint amount = 1)
+		public void decreaseQuantity(uint amount = 1)
 		{
-			if (mAmount > 0)
+			if (mQuantity > 0)
 			{
-				mAmount = mAmount - amount;
+				mQuantity = mQuantity - amount;
 			}
 
 			recalculation();
@@ -154,7 +154,7 @@ namespace wsr_pos
 
 		private void recalculation()
 		{
-			mSubTotalPrice = mItem.getPrice() * mAmount;
+			mSubTotalPrice = mItem.getPrice() * mQuantity;
 
 			switch (mDiscountType)
 			{
