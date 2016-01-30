@@ -98,6 +98,7 @@ namespace wsr_pos
 				if (order_item.getItem().getId() == item.getId())
 				{
 					order_item.increaseQuantity();
+					Debug.Write("Increase : " + order_item.getQuantity());
 					break;
 				}
 			}
