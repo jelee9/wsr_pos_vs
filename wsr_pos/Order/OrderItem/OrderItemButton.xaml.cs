@@ -76,11 +76,16 @@ namespace wsr_pos
 		private Label mDiscountPercent;
 		private Label mTotalPrice;
 
-		public OrderItemButton(OrderItem order_item = null)
+		CircleButtonClickEvent mIncreaseEvent;
+		CircleButtonClickEvent mDecreaseEvent;
+
+		public OrderItemButton(OrderItem order_item = null, CircleButtonClickEvent increase_event = null, CircleButtonClickEvent decrease_event = null)
 		{
 			InitializeComponent();
 
 			mOrderItem = order_item;
+			mIncreaseEvent = increase_event;
+			mDecreaseEvent = decrease_event;
 
 			canvas.Width = WIDTH;
 			canvas.Height = HEIGHT;
@@ -164,6 +169,7 @@ namespace wsr_pos
 			mIncreaseQuantity = new CircleButton(mOrderItem.getItem());
 			setPosition(mIncreaseQuantity, INCREASE_QUANTITY_X, INCREASE_QUANTITY_Y, INCREASE_QUANTITY_W, INCREASE_QUANTITY_H);
 			mIncreaseQuantity.VerticalContentAlignment = VerticalAlignment.Bottom;
+			mIncreaseQuantity.Click += mIncreaseEvent;
 			canvas.Children.Add(mIncreaseQuantity);
 		}
 
@@ -185,6 +191,7 @@ namespace wsr_pos
 			setPosition(mDecreaseQuantity, DECREASE_QUANTITY_X, DECREASE_QUANTITY_Y, DECREASE_QUANTITY_W, DECREASE_QUANTITY_H);
 			//mDecreaseQuantity.Background = MetrialColor.getBrush(MetrialColor.Name.Purple);
 			mDecreaseQuantity.VerticalContentAlignment = VerticalAlignment.Bottom;
+			mDecreaseQuantity.Click += mDecreaseEvent;
 			canvas.Children.Add(mDecreaseQuantity);
 		}
 

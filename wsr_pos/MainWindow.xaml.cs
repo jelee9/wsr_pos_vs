@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -33,32 +34,6 @@ namespace wsr_pos
 			MenuItemCanvas item_canvas = new MenuItemCanvas(null, addOrderItem);
 			item_canvas.setPosition(0, 400, 1280, 400);
 			canvas.Children.Add(item_canvas);
-			/*
-			OrderItemButton btn = new OrderItemButton();
-			stack_panel.Children.Add(btn);
-
-			OrderItemButton btn1 = new OrderItemButton();
-			stack_panel.Children.Add(btn1);
-
-			OrderItemButton btn2 = new OrderItemButton();
-			stack_panel.Children.Add(btn2);
-
-			
-			OrderItemButton btn3 = new OrderItemButton();
-			stack_panel.Children.Add(btn3);
-
-			OrderItemButton btn4 = new OrderItemButton();
-			stack_panel.Children.Add(btn4);
-
-			OrderItemButton btn5 = new OrderItemButton();
-			stack_panel.Children.Add(btn5);
-
-			OrderItemButton btn6 = new OrderItemButton();
-			stack_panel.Children.Add(btn6);
-
-			OrderItemButton btn7 = new OrderItemButton();
-			stack_panel.Children.Add(btn7);
-			*/
 		}
 
 		private void setOrderListView()
@@ -106,7 +81,7 @@ namespace wsr_pos
 				OrderItem order_item = new OrderItem(item);
 				mOrderItemList.Add(order_item);
 
-				OrderItemButton order_item_button = new OrderItemButton(order_item);
+				OrderItemButton order_item_button = new OrderItemButton(order_item, increaseQuantity, decreaseQuantity);
 				order_item_button.Width = OrderItemButton.WIDTH;
 				order_item_button.Height = OrderItemButton.HEIGHT;
 				mOrderItemButtonList.Add(order_item_button);
@@ -116,7 +91,7 @@ namespace wsr_pos
 			}
 		}
 
-		private void increateQuantity(Item item)
+		private void increaseQuantity(Item item)
 		{
 			foreach (OrderItem order_item in mOrderItemList)
 			{
@@ -138,6 +113,40 @@ namespace wsr_pos
 					}
 				}
 			}
+		}
+
+		private void decreaseQuantity(Item item)
+		{
+			foreach (OrderItem order_item in mOrderItemList)
+			{
+				if (order_item.getItem().getId() == item.getId())
+				{
+					order_item.decreaseQuantity();
+					Debug.Write("Decrease : " + order_item.getQuantity());
+					break;
+				}
+			}
+
+			foreach (OrderItemButton order_item_button in mOrderItemButtonList)
+			{
+				foreach (OrderItem order_item in mOrderItemList)
+				{
+					if (order_item_button.getItem().getId() == order_item.getItem().getId())
+					{
+						order_item_button.refreshOrder(order_item);
+						if(order_item.getQuantity() == 0)
+						{
+							mOrderButtonSTackPanel.Children.Remove(order_item_button);
+							mOrderItemButtonList.Remove(order_item_button);
+							mOrderItemList.Remove(order_item);
+
+							Debug.Write("Button is removing : " + order_item.getItem().getName());
+							return;
+						}
+					}
+				}
+			}
+
 		}
 
 		private void button_click(object sender, RoutedEventArgs e, Item item)

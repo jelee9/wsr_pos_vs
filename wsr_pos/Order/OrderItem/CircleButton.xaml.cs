@@ -92,6 +92,8 @@ namespace wsr_pos
 			style.Triggers.Add(button_pressed_trigger);
 
 			btn.Style = style;
+
+			btn.Click += onClick;
 		}
 
 		public event CircleButtonClickEvent Click;
