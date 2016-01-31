@@ -13,8 +13,20 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace wsr_pos.Order
+namespace wsr_pos
 {
+	public struct Menu
+	{
+		public MenuItem item;
+		public MenuItemButton button;
+
+		public Menu(MenuItem item, MenuItemButton button)
+		{
+			this.item = item;
+			this.button = button;
+		}
+	}
+
 	/// <summary>
 	/// Interaction logic for ItemCanvas.xaml
 	/// </summary>

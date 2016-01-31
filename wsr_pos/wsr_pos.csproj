@@ -75,7 +75,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Order\MenuItem\MenuItemButton.xaml">
+    <Page Include="Order\Menu\MenuItemButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -89,36 +89,43 @@
     </Compile>
     <Compile Include="Common\Item.cs" />
     <Compile Include="Common\OrderItem.cs" />
-    <Compile Include="Order\MenuItem\MenuItemButton.xaml.cs">
+    <Compile Include="Order\Menu\MenuItemButton.xaml.cs">
       <DependentUpon>MenuItemButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Order\MenuItem\MenuItemCanvas.xaml">
+    <Page Include="Order\Menu\MenuItemCanvas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Order\OrderItem\CircleButton.xaml">
+    <Page Include="Order\Order\CircleButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Order\OrderItem\OrderItemButton.xaml">
+    <Page Include="Order\Order\OrderItemButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Order\Order\OrderItemCanvas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\MetrialColor.cs" />
-    <Compile Include="Order\MenuItem\MenuItemCanvas.xaml.cs">
+    <Compile Include="Order\Menu\MenuItemCanvas.xaml.cs">
       <DependentUpon>MenuItemCanvas.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Order\OrderItem\CircleButton.xaml.cs">
+    <Compile Include="Order\Order\CircleButton.xaml.cs">
       <DependentUpon>CircleButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Order\OrderItem\OrderItemButton.xaml.cs">
+    <Compile Include="Order\Order\OrderItemButton.xaml.cs">
       <DependentUpon>OrderItemButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Order\Order\OrderItemCanvas.xaml.cs">
+      <DependentUpon>OrderItemCanvas.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\My_Project\wsr_pos_vs\wsr_pos_vs\wsr_pos\App.xaml
-5696287141
+61828415087
 
-121303259721
+13-17684731
 13738642453
-Order\MenuItem\MenuItemButton.xaml;MainWindow.xaml;Order\MenuItem\MenuItemCanvas.xaml;Order\OrderItem\CircleButton.xaml;Order\OrderItem\OrderItemButton.xaml;
+Order\Menu\MenuItemButton.xaml;MainWindow.xaml;Order\Menu\MenuItemCanvas.xaml;Order\Order\CircleButton.xaml;Order\Order\OrderItemButton.xaml;Order\Order\OrderItemCanvas.xaml;
 
 False
 
