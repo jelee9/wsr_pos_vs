@@ -2,6 +2,7 @@ D:\My_Project\wsr_pos_vs\wsr_pos_vs\wsr_pos\bin\x64\Debug\Resource\add_circle_bu
 D:\My_Project\wsr_pos_vs\wsr_pos_vs\wsr_pos\bin\x64\Debug\wsr_pos.exe.config
 D:\My_Project\wsr_pos_vs\wsr_pos_vs\wsr_pos\bin\x64\Debug\wsr_pos.exe
 D:\My_Project\wsr_pos_vs\wsr_pos_vs\wsr_pos\bin\x64\Debug\wsr_pos.pdb
+D:\My_Project\wsr_pos_vs\wsr_pos_vs\wsr_pos\obj\x64\Debug\wsr_pos.csprojResolveAssemblyReference.cache
 D:\My_Project\wsr_pos_vs\wsr_pos_vs\wsr_pos\obj\x64\Debug\Order\Menu\MenuItemButton.g.cs
 D:\My_Project\wsr_pos_vs\wsr_pos_vs\wsr_pos\obj\x64\Debug\MainWindow.g.cs
 D:\My_Project\wsr_pos_vs\wsr_pos_vs\wsr_pos\obj\x64\Debug\Order\Menu\MenuItemCanvas.g.cs
