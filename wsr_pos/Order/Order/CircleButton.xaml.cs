@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -26,9 +27,27 @@ namespace wsr_pos
 
 			Image img = new Image();
 			//img.Source = new BitmapImage(new Uri("D:\\My_Project\\wsr_pos_vs\\wsr_pos_vs\\wsr_pos\\bin\\x64\\Debug\\Resource\\add_circle_button.png", UriKind.RelativeOrAbsolute));
-			//img.Source = new BitmapImage(new Uri("D:\\My_Project\\wsr_pos_vs\\wsr_pos_vs\\wsr_pos\\bin\\x64\\Debug\\Resource\\delete.png", UriKind.RelativeOrAbsolute));
-			img.Width = 25;
-			img.Height = 25;
+			//img.Source = new BitmapImage(new Uri("C:\\add_circle_outline_grey600_192x192.png", UriKind.RelativeOrAbsolute));
+			//img.Source = new BitmapImage(new Uri(".\\Resource\\add_circle_button.png", UriKind.RelativeOrAbsolute));
+			//img.Source = Properties.Resources.add_circle_outline_grey600_192x192.GetHicon();
+
+			
+			System.Reflection.Assembly myAssembly = System.Reflection.Assembly.GetExecutingAssembly();
+			Stream myStream = myAssembly.GetManifestResourceStream("wsr_pos.add_circle_outline_grey600_192x192.png");
+			BitmapImage bi = new BitmapImage();
+
+			bi.BeginInit();
+			bi.StreamSource = myStream;
+			bi.CacheOption = BitmapCacheOption.OnLoad;
+			bi.EndInit();
+
+			img.Source = bi;
+
+			RenderOptions.SetBitmapScalingMode(img, BitmapScalingMode.HighQuality);
+			//img.Source = new BitmapImage(new Uri(@"Resources\add_circle_outline_grey600_192x192.png", UriKind.Relative));
+
+			img.Width = 35;
+			img.Height = 35;
 			//img.Stretch = Stretch.Fill;
 
 			StackPanel stackPnl = new StackPanel();
@@ -49,9 +68,9 @@ namespace wsr_pos
 			ControlTemplate normal_button_template = new ControlTemplate(typeof(Button));
 
 			FrameworkElementFactory normal_button_shape = new FrameworkElementFactory(typeof(Ellipse));
-			normal_button_shape.SetValue(Shape.FillProperty, MetrialColor.getBrush(color, 3));
-			normal_button_shape.SetValue(Shape.StrokeProperty, Brushes.White);
-			normal_button_shape.SetValue(Shape.StrokeThicknessProperty, 2.0);
+			//normal_button_shape.SetValue(Shape.FillProperty, MetrialColor.getBrush(color, 3));
+			//normal_button_shape.SetValue(Shape.StrokeProperty, Brushes.White);
+			//normal_button_shape.SetValue(Shape.StrokeThicknessProperty, 2.0);
 
 			FrameworkElementFactory normal_button_content_presenter = new FrameworkElementFactory(typeof(ContentPresenter));
 			normal_button_content_presenter.SetValue(ContentProperty, new TemplateBindingExtension(ContentProperty));
@@ -73,9 +92,9 @@ namespace wsr_pos
 			ControlTemplate pressed_button_template = new ControlTemplate(typeof(Button));
 
 			FrameworkElementFactory pressed_button_shape = new FrameworkElementFactory(typeof(Ellipse));
-			pressed_button_shape.SetValue(Shape.FillProperty, MetrialColor.getBrush(color, 4));
-			pressed_button_shape.SetValue(Shape.StrokeProperty, Brushes.White);
-			pressed_button_shape.SetValue(Shape.StrokeThicknessProperty, 2.0);
+			pressed_button_shape.SetValue(Shape.FillProperty, MetrialColor.getBrush(MetrialColor.Name.Grey, 3));
+			//pressed_button_shape.SetValue(Shape.StrokeProperty, Brushes.White);
+			//pressed_button_shape.SetValue(Shape.StrokeThicknessProperty, 2.0);
 
 			FrameworkElementFactory pressed_button_button_content_presenter = new FrameworkElementFactory(typeof(ContentPresenter));
 			pressed_button_button_content_presenter.SetValue(ContentProperty, new TemplateBindingExtension(ContentProperty));

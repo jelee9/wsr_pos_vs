@@ -89,7 +89,7 @@ namespace wsr_pos
 
 			canvas.Width = WIDTH;
 			canvas.Height = HEIGHT;
-			canvas.Background = MetrialColor.getBrush(MetrialColor.Name.Grey, 7);
+			canvas.Background = MetrialColor.getBrush(MetrialColor.Name.Grey, 0);
 
 			setName();
 			setComment();
@@ -144,7 +144,7 @@ namespace wsr_pos
 			}
 
 			mName.FontSize = 16;
-			mName.Foreground = MetrialColor.getBrush(MetrialColor.Name.White);
+			mName.Foreground = MetrialColor.getBrush(MetrialColor.Name.Grey, 8);
 			mName.Content = mOrderItem.getItem().getName();
 			mName.VerticalContentAlignment = VerticalAlignment.Center;
 			canvas.Children.Add(mName);
@@ -158,7 +158,7 @@ namespace wsr_pos
 				setPosition(mComment, COMMENT_X, COMMENT_Y, COMMENT_W, COMMENT_H);
 				mComment.FontSize = 10;
 				mComment.FontStyle = FontStyles.Italic;
-				mComment.Foreground = MetrialColor.getBrush(MetrialColor.Name.White);
+				mComment.Foreground = MetrialColor.getBrush(MetrialColor.Name.Grey, 8);
 				mComment.Content = mOrderItem.getItem().getComment();
 				canvas.Children.Add(mComment);
 			}
@@ -178,7 +178,7 @@ namespace wsr_pos
 			mQuantity = new Label();
 			setPosition(mQuantity, QUANTITY_X, QUANTITY_Y, QUANTITY_W, QUANTITY_H);
 			mQuantity.FontSize = 16;
-			mQuantity.Foreground = MetrialColor.getBrush(MetrialColor.Name.White);
+			mQuantity.Foreground = MetrialColor.getBrush(MetrialColor.Name.Grey, 8);
 			mQuantity.Content = mOrderItem.getQuantity();
 			mQuantity.HorizontalContentAlignment = HorizontalAlignment.Center;
 			mQuantity.VerticalContentAlignment = VerticalAlignment.Center;
@@ -200,7 +200,7 @@ namespace wsr_pos
 			mSubTotalPrice = new Label();
 			setPosition(mSubTotalPrice, SUBTOTAL_PRICE_X, SUBTOTAL_PRICE_Y, SUBTOTAL_PRICE_W, SUBTOTAL_PRICE_H);
 			mSubTotalPrice.FontSize = 16;
-			mSubTotalPrice.Foreground = MetrialColor.getBrush(MetrialColor.Name.White);
+			mSubTotalPrice.Foreground = MetrialColor.getBrush(MetrialColor.Name.Grey, 8);
 			mSubTotalPrice.Content = string.Format("{0:N0}", mOrderItem.getSubTotalPrice());
 			mSubTotalPrice.HorizontalContentAlignment = HorizontalAlignment.Right;
 			mSubTotalPrice.VerticalContentAlignment = VerticalAlignment.Center;
@@ -212,7 +212,7 @@ namespace wsr_pos
 			mDiscountPrice = new Label();
 			setPosition(mDiscountPrice, DISCOUNT_PRICE_X, DISCOUNT_PRICE_Y, DISCOUNT_PRICE_W, DISCOUNT_PRICE_H);
 			mDiscountPrice.FontSize = 16;
-			mDiscountPrice.Foreground = MetrialColor.getBrush(MetrialColor.Name.White);
+			mDiscountPrice.Foreground = MetrialColor.getBrush(MetrialColor.Name.Grey, 8);
 			mDiscountPrice.Content = string.Format("{0:N0}", mOrderItem.getDiscountPrice());
 			mDiscountPrice.HorizontalContentAlignment = HorizontalAlignment.Right;
 			mDiscountPrice.VerticalContentAlignment = VerticalAlignment.Center;
@@ -224,7 +224,7 @@ namespace wsr_pos
 			mTotalPrice = new Label();
 			setPosition(mTotalPrice, TOTAL_PRICE_X, TOTAL_PRICE_Y, TOTAL_PRICE_W, TOTAL_PRICE_H);
 			mTotalPrice.FontSize = 16;
-			mTotalPrice.Foreground = MetrialColor.getBrush(MetrialColor.Name.White);
+			mTotalPrice.Foreground = MetrialColor.getBrush(MetrialColor.Name.Grey, 8);
 			mTotalPrice.Content = string.Format("{0:N0}", mOrderItem.getTotalPrice());
 			mTotalPrice.HorizontalContentAlignment = HorizontalAlignment.Right;
 			mTotalPrice.VerticalContentAlignment = VerticalAlignment.Center;
