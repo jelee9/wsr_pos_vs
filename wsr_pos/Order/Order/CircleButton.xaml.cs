@@ -26,7 +26,7 @@ namespace wsr_pos
 
 			Image img = new Image();
 			//img.Source = new BitmapImage(new Uri("D:\\My_Project\\wsr_pos_vs\\wsr_pos_vs\\wsr_pos\\bin\\x64\\Debug\\Resource\\add_circle_button.png", UriKind.RelativeOrAbsolute));
-			img.Source = new BitmapImage(new Uri("D:\\My_Project\\wsr_pos_vs\\wsr_pos_vs\\wsr_pos\\bin\\x64\\Debug\\Resource\\delete.png", UriKind.RelativeOrAbsolute));
+			//img.Source = new BitmapImage(new Uri("D:\\My_Project\\wsr_pos_vs\\wsr_pos_vs\\wsr_pos\\bin\\x64\\Debug\\Resource\\delete.png", UriKind.RelativeOrAbsolute));
 			img.Width = 25;
 			img.Height = 25;
 			//img.Stretch = Stretch.Fill;
