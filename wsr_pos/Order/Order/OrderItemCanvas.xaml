@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:wsr_pos"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <StackPanel Name="stack_panel">
+    <Canvas Name="canvas">
             
-    </StackPanel>
+    </Canvas>
 </UserControl>

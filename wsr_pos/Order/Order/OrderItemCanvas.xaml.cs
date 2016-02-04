@@ -22,13 +22,35 @@ namespace wsr_pos
 		}
 
 		List<Order> mOrderList;
+		ScrollViewer mOrderItemButtonScrollViewer;
+		StackPanel mOrderItemButtonStackPanel;
 
 		public OrderItemCanvas()
 		{
 			InitializeComponent();
+
+			mOrderList = new List<Order>();
+
+			canvas.Width = OrderItemButton.WIDTH_WITH_SCROLL;
+			canvas.Height = OrderItemButton.HEIGHT * 5;
+
+			mOrderItemButtonScrollViewer = new ScrollViewer();
+			mOrderItemButtonScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+			mOrderItemButtonScrollViewer.Width = OrderItemButton.WIDTH_WITH_SCROLL;
+			mOrderItemButtonScrollViewer.Height = OrderItemButton.HEIGHT * 5;
+			Canvas.SetTop(mOrderItemButtonScrollViewer, 0);
+			Canvas.SetLeft(mOrderItemButtonScrollViewer, 0);
+			canvas.Children.Add(mOrderItemButtonScrollViewer);
+
+			mOrderItemButtonStackPanel = new StackPanel();
+			mOrderItemButtonStackPanel.Orientation = Orientation.Vertical;
+			mOrderItemButtonStackPanel.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+			Canvas.SetTop(mOrderItemButtonStackPanel, 0);
+			Canvas.SetLeft(mOrderItemButtonStackPanel, 0);
+			mOrderItemButtonScrollViewer.Content = mOrderItemButtonStackPanel;
 		}
 
-		private void addOrderItem(Item item)
+		public void addOrderItem(Item item)
 		{
 			bool is_already_added = false;
 
@@ -53,7 +75,7 @@ namespace wsr_pos
 
 				mOrderList.Add(new Order(order_item, order_item_button));
 
-				stack_panel.Children.Add(order_item_button);
+				mOrderItemButtonStackPanel.Children.Add(order_item_button);
 			}
 		}
 
@@ -83,7 +105,7 @@ namespace wsr_pos
 
 					if (order.item.getQuantity() == 0)
 					{
-						stack_panel.Children.Remove(order.button);
+						mOrderItemButtonStackPanel.Children.Remove(order.button);
 						mOrderList.Remove(order);
 
 						Debug.Write("Button is removing : " + order.item.getItem().getName());
