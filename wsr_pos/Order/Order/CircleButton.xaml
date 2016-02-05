@@ -6,5 +6,5 @@
              xmlns:local="clr-namespace:wsr_pos"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-	<Button Name="btn" Content="Click Me" Width="35" Height="35" />
+	<Button Name="button" />
 </UserControl>

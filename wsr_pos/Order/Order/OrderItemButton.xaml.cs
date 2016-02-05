@@ -166,7 +166,8 @@ namespace wsr_pos
 
 		private void setIncreaseQuantity()
 		{
-			mIncreaseQuantity = new CircleButton(mOrderItem.getItem());
+			mIncreaseQuantity = new CircleButton(mOrderItem.getItem(), 35, 35);
+			mIncreaseQuantity.setBackgroundImage("add_circle_outline_grey600_36x36.png", "add_circle_grey600_36x36.png");
 			setPosition(mIncreaseQuantity, INCREASE_QUANTITY_X, INCREASE_QUANTITY_Y, INCREASE_QUANTITY_W, INCREASE_QUANTITY_H);
 			mIncreaseQuantity.VerticalContentAlignment = VerticalAlignment.Bottom;
 			mIncreaseQuantity.Click += mIncreaseEvent;
@@ -187,9 +188,9 @@ namespace wsr_pos
 
 		private void setDecreaseQuantity()
 		{
-			mDecreaseQuantity = new CircleButton(mOrderItem.getItem());
+			mDecreaseQuantity = new CircleButton(mOrderItem.getItem(), 36, 36);
+			mDecreaseQuantity.setBackgroundImage("remove_circle_outline_grey600_36x36.png", "remove_circle_grey600_36x36.png");
 			setPosition(mDecreaseQuantity, DECREASE_QUANTITY_X, DECREASE_QUANTITY_Y, DECREASE_QUANTITY_W, DECREASE_QUANTITY_H);
-			//mDecreaseQuantity.Background = MetrialColor.getBrush(MetrialColor.Name.Purple);
 			mDecreaseQuantity.VerticalContentAlignment = VerticalAlignment.Bottom;
 			mDecreaseQuantity.Click += mDecreaseEvent;
 			canvas.Children.Add(mDecreaseQuantity);
