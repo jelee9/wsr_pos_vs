@@ -29,7 +29,7 @@ namespace wsr_pos
 		private void setOrderItemCanvse()
 		{
 			mOrderItemCanvas = new OrderItemCanvas();
-			Canvas.SetTop(mOrderItemCanvas, 100);
+			Canvas.SetTop(mOrderItemCanvas, 50);
 			Canvas.SetLeft(mOrderItemCanvas, 0);
 			canvas.Children.Add(mOrderItemCanvas);
 		}
