@@ -76,6 +76,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Order\Discount\Discount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Order\Menu\MenuItemButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -90,6 +94,9 @@
     </Compile>
     <Compile Include="Common\Item.cs" />
     <Compile Include="Common\OrderItem.cs" />
+    <Compile Include="Order\Discount\Discount.xaml.cs">
+      <DependentUpon>Discount.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Order\Menu\MenuItemButton.xaml.cs">
       <DependentUpon>MenuItemButton.xaml</DependentUpon>
     </Compile>
@@ -113,6 +120,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Order\Total\TotalCanvas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\MetrialColor.cs" />
@@ -127,6 +138,9 @@
     </Compile>
     <Compile Include="Order\Order\OrderItemCanvas.xaml.cs">
       <DependentUpon>OrderItemCanvas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Order\Total\TotalCanvas.xaml.cs">
+      <DependentUpon>TotalCanvas.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

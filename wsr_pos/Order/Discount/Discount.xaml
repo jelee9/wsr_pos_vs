@@ -1,0 +1,16 @@
+﻿<Window x:Class="wsr_pos.Discount"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:wsr_pos"
+        mc:Ignorable="d"
+        Title="Discount" 
+		Top="0"
+		Left="0"
+		Width="400"
+		Height="600"
+		WindowStyle="None"
+		ResizeMode="NoResize">
+	<Canvas Name="canvas"/>
+</Window>

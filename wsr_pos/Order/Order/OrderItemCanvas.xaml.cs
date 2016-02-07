@@ -5,6 +5,7 @@ using System.Windows.Controls;
 
 namespace wsr_pos
 {
+	public delegate void OrderChangeEvent(uint sub_total_price, uint discount_price, uint total_price);
 	/// <summary>
 	/// Interaction logic for OrderItemCanvas.xaml
 	/// </summary>
@@ -158,6 +159,8 @@ namespace wsr_pos
 
 				mOrderItemButtonStackPanel.Children.Add(order_item_button);
 			}
+
+			onOrderChange();
 		}
 
 		private void increaseQuantity(Item item)
@@ -172,6 +175,8 @@ namespace wsr_pos
 					break;
 				}
 			}
+
+			onOrderChange();
 		}
 
 		private void decreaseQuantity(Item item)
@@ -190,11 +195,34 @@ namespace wsr_pos
 						mOrderList.Remove(order);
 
 						Debug.Write("Button is removing : " + order.item.getItem().getName());
-						return;
+						break;
 					}
 
 					break;
 				}
+			}
+
+			onOrderChange();
+		}
+
+		public event OrderChangeEvent OrderChange;
+
+		public void onOrderChange()
+		{
+			if(OrderChange != null)
+			{
+				uint sub_total_price = 0;
+				uint discount_price = 0;
+				uint total_price = 0;
+
+				foreach (Order order in mOrderList)
+				{
+					sub_total_price += order.item.getSubTotalPrice();
+					discount_price += order.item.getDiscountPrice();
+					total_price += order.item.getTotalPrice();
+				}
+
+				OrderChange(sub_total_price, discount_price, total_price);
 			}
 		}
 	}
