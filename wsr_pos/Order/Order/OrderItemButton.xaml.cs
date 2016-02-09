@@ -14,9 +14,8 @@ namespace wsr_pos
 		public static uint OUTER_PADDING = 20;
 		public static uint INNER_PADDING = 40;
 
-		public static uint WIDTH = 880;
+		public static uint WIDTH = 900;
 		public static uint SCROLL = 20;
-		public static uint WIDTH_WITH_SCROLL = (WIDTH + SCROLL);
 		public static uint HEIGHT = 60;
 
 		public static uint NAME_X = OUTER_PADDING;
@@ -61,7 +60,7 @@ namespace wsr_pos
 		public static uint TOTAL_PRICE_H = SUBTOTAL_PRICE_H;
 
 		public static uint LINE_X = OUTER_PADDING;
-		public static uint LINE_W = WIDTH - (OUTER_PADDING * 2);
+		public static uint LINE_W = WIDTH - SCROLL - (OUTER_PADDING * 2);
 		public static uint LINE_H = 2;
 		public static uint LINE_Y = HEIGHT - LINE_H;
 

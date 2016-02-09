@@ -33,14 +33,14 @@ namespace wsr_pos
 
 			mOrderList = new List<Order>();
 
-			canvas.Width = OrderItemButton.WIDTH_WITH_SCROLL;
+			canvas.Width = OrderItemButton.WIDTH;
 			canvas.Height = OrderItemButton.HEIGHT * 5;
 
 			setHeaderBar();
 
 			mOrderItemButtonScrollViewer = new ScrollViewer();
 			mOrderItemButtonScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
-			mOrderItemButtonScrollViewer.Width = OrderItemButton.WIDTH_WITH_SCROLL;
+			mOrderItemButtonScrollViewer.Width = OrderItemButton.WIDTH;
 			mOrderItemButtonScrollViewer.Height = OrderItemButton.HEIGHT * 5;
 			Canvas.SetTop(mOrderItemButtonScrollViewer, 50);
 			Canvas.SetLeft(mOrderItemButtonScrollViewer, 0);
