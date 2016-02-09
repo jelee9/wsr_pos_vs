@@ -76,6 +76,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Common\Widget\RectButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Order\Discount\Discount.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -94,6 +98,9 @@
     </Compile>
     <Compile Include="Common\Item.cs" />
     <Compile Include="Common\OrderItem.cs" />
+    <Compile Include="Common\Widget\RectButton.xaml.cs">
+      <DependentUpon>RectButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Order\Discount\Discount.xaml.cs">
       <DependentUpon>Discount.xaml</DependentUpon>
     </Compile>
@@ -108,7 +115,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Order\Order\CircleButton.xaml">
+    <Page Include="Common\Widget\CircleButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -130,7 +137,7 @@
     <Compile Include="Order\Menu\MenuItemCanvas.xaml.cs">
       <DependentUpon>MenuItemCanvas.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Order\Order\CircleButton.xaml.cs">
+    <Compile Include="Common\Widget\CircleButton.xaml.cs">
       <DependentUpon>CircleButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Order\Order\OrderItemButton.xaml.cs">
@@ -182,6 +189,11 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Image\remove_circle_outline_grey600_36x36.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Image\menu_white_36x36.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>

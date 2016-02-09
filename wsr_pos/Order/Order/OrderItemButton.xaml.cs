@@ -3,6 +3,9 @@ using System.Windows.Controls;
 
 namespace wsr_pos
 {
+	public delegate void OrderItemIncreaseEvent(Item item);
+	public delegate void OrderItemDecreaseEvent(Item item);
+
 	/// <summary>
 	/// Interaction logic for OrderItemButton.xaml
 	/// </summary>
@@ -75,16 +78,11 @@ namespace wsr_pos
 		private Label mDiscountPercent;
 		private Label mTotalPrice;
 
-		CircleButtonClickEvent mIncreaseEvent;
-		CircleButtonClickEvent mDecreaseEvent;
-
-		public OrderItemButton(OrderItem order_item = null, CircleButtonClickEvent increase_event = null, CircleButtonClickEvent decrease_event = null)
+		public OrderItemButton(OrderItem order_item = null)
 		{
 			InitializeComponent();
 
 			mOrderItem = order_item;
-			mIncreaseEvent = increase_event;
-			mDecreaseEvent = decrease_event;
 
 			canvas.Width = WIDTH;
 			canvas.Height = HEIGHT;
@@ -165,11 +163,11 @@ namespace wsr_pos
 
 		private void setIncreaseQuantity()
 		{
-			mIncreaseQuantity = new CircleButton(mOrderItem.getItem(), 35, 35);
+			mIncreaseQuantity = new CircleButton(35, 35);
 			mIncreaseQuantity.setBackgroundImage("add_circle_outline_grey600_36x36.png", "add_circle_grey600_36x36.png");
 			setPosition(mIncreaseQuantity, INCREASE_QUANTITY_X, INCREASE_QUANTITY_Y, INCREASE_QUANTITY_W, INCREASE_QUANTITY_H);
 			mIncreaseQuantity.VerticalContentAlignment = VerticalAlignment.Bottom;
-			mIncreaseQuantity.Click += mIncreaseEvent;
+			mIncreaseQuantity.Click += onIncreaseClick;
 			canvas.Children.Add(mIncreaseQuantity);
 		}
 
@@ -187,11 +185,11 @@ namespace wsr_pos
 
 		private void setDecreaseQuantity()
 		{
-			mDecreaseQuantity = new CircleButton(mOrderItem.getItem(), 36, 36);
+			mDecreaseQuantity = new CircleButton(36, 36);
 			mDecreaseQuantity.setBackgroundImage("remove_circle_outline_grey600_36x36.png", "remove_circle_grey600_36x36.png");
 			setPosition(mDecreaseQuantity, DECREASE_QUANTITY_X, DECREASE_QUANTITY_Y, DECREASE_QUANTITY_W, DECREASE_QUANTITY_H);
 			mDecreaseQuantity.VerticalContentAlignment = VerticalAlignment.Bottom;
-			mDecreaseQuantity.Click += mDecreaseEvent;
+			mDecreaseQuantity.Click += onDecraseClick;
 			canvas.Children.Add(mDecreaseQuantity);
 		}
 
@@ -240,6 +238,25 @@ namespace wsr_pos
 			mLine.Height = LINE_H;
 			mLine.Background = MetrialColor.getBrush(MetrialColor.Name.Grey, 4);
 			canvas.Children.Add(mLine);
+		}
+
+		public event OrderItemIncreaseEvent ClickIncrease;
+		public event OrderItemDecreaseEvent ClickDecrease;
+
+		public void onIncreaseClick()
+		{
+			if (ClickIncrease != null)
+			{
+				ClickIncrease(mOrderItem.getItem());
+			}
+		}
+
+		public void onDecraseClick()
+		{
+			if(ClickDecrease != null)
+			{
+				ClickDecrease(mOrderItem.getItem());
+			}
 		}
 	}
 }

@@ -12,8 +12,5 @@
 		Height="800"
 		WindowStyle="None"
 		ResizeMode="NoResize">
-	<Canvas Name="canvas">
-		<Label Name="label" FontSize="30">이종은 HelloWorld</Label>
-		<Button Name="button" Canvas.Top="100" Canvas.Left="50" Width="100" Height="50">hahaha</Button>
-	</Canvas>
+	<Canvas Name="canvas" />
 </Window>

@@ -7,22 +7,20 @@ using System.Windows.Shapes;
 
 namespace wsr_pos
 {
-	public delegate void CircleButtonClickEvent(Item item);
+	public delegate void CircleButtonClickEvent();
 
 	/// <summary>
 	/// Interaction logic for CircleButton.xaml
 	/// </summary>
 	public partial class CircleButton : UserControl
 	{
-		Item mItem;
 		uint mWidth;
 		uint mHeight;
 
-		public CircleButton(Item item, uint width, uint height)
+		public CircleButton(uint width, uint height)
 		{
 			InitializeComponent();
 
-			mItem = item;
 			button.Width = mWidth = width;
 			button.Height = mHeight = height;
 
@@ -169,7 +167,7 @@ namespace wsr_pos
 		{
 			if (Click != null)
 			{
-				Click(mItem);
+				Click();
 			}
 		}
 	}

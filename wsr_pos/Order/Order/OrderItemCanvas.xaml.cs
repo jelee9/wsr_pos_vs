@@ -151,9 +151,11 @@ namespace wsr_pos
 			{
 				OrderItem order_item = new OrderItem(item);
 
-				OrderItemButton order_item_button = new OrderItemButton(order_item, increaseQuantity, decreaseQuantity);
+				OrderItemButton order_item_button = new OrderItemButton(order_item);
 				order_item_button.Width = OrderItemButton.WIDTH;
 				order_item_button.Height = OrderItemButton.HEIGHT;
+				order_item_button.ClickIncrease += increaseQuantity;
+				order_item_button.ClickDecrease += decreaseQuantity;
 
 				mOrderList.Add(new Order(order_item, order_item_button));
 
