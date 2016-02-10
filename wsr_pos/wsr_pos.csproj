@@ -119,6 +119,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Order\OrderMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Order\Order\OrderItemButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -139,6 +143,9 @@
     </Compile>
     <Compile Include="Common\Widget\CircleButton.xaml.cs">
       <DependentUpon>CircleButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Order\OrderMain.xaml.cs">
+      <DependentUpon>OrderMain.xaml</DependentUpon>
     </Compile>
     <Compile Include="Order\Order\OrderItemButton.xaml.cs">
       <DependentUpon>OrderItemButton.xaml</DependentUpon>
@@ -194,6 +201,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Image\menu_white_36x36.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Image\menu_white_27x27.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>

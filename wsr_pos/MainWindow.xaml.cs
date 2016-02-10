@@ -12,19 +12,14 @@ namespace wsr_pos
 	public partial class MainWindow : Window
     {
 		private Canvas mTitleBar;
-		private OrderItemCanvas mOrderItemCanvas;
-		private TotalCanvas mTotalCanvas;
-		private MenuItemCanvas mMenuItemCanvas;
+		private OrderMain mOrderMain;
 
 		public MainWindow()
         {
             InitializeComponent();
 
 			setTitle();
-			setOrderItemCanvse();
-			setTotalCanvas();
-			setMenuItemCanvas();
-
+			setMode();
 			//Discount d = new Discount();
 			//d.ShowDialog();
 		}
@@ -79,7 +74,8 @@ namespace wsr_pos
 			}
 			*/
 			RectButton rb = new RectButton(36, 36);
-			rb.setBackgroundImage("menu_white_36x36.png", "menu_white_36x36.png");
+			rb.setBackgroundImage("menu_white_36x36.png", "menu_white_27x27.png");
+			//rb.setBackgroundImage("menu_white_36x36.png", "add_circle_grey600_36x36.png");
 			//rb.setText("aaaaa");
 			//rb.setBackgroundColor(MetrialColor.Name.Indigo);
 			Canvas.SetLeft(rb, 10);
@@ -90,29 +86,18 @@ namespace wsr_pos
 			canvas.Children.Add(mTitleBar);
 		}
 
-		private void setOrderItemCanvse()
+		private void setMode()
 		{
-			mOrderItemCanvas = new OrderItemCanvas();
-			Canvas.SetTop(mOrderItemCanvas, 50);
-			Canvas.SetLeft(mOrderItemCanvas, 0);
-			canvas.Children.Add(mOrderItemCanvas);
+			setOrder();
 		}
 
-		private void setTotalCanvas()
+		private void setOrder()
 		{
-			mTotalCanvas = new TotalCanvas();
-			Canvas.SetTop(mTotalCanvas, 50);
-			Canvas.SetLeft(mTotalCanvas, 900);
-			canvas.Children.Add(mTotalCanvas);
+			mOrderMain = new OrderMain();
+			Canvas.SetLeft(mOrderMain, 0);
+			Canvas.SetTop(mOrderMain, 50);
 
-			mOrderItemCanvas.OrderChange += mTotalCanvas.setPrice;
-		}
-
-		private void setMenuItemCanvas()
-		{
-			mMenuItemCanvas = new MenuItemCanvas(null, mOrderItemCanvas.addOrderItem);
-			mMenuItemCanvas.setPosition(0, 400, 1280, 400);
-			canvas.Children.Add(mMenuItemCanvas);
+			canvas.Children.Add(mOrderMain);
 		}
     }
 }
