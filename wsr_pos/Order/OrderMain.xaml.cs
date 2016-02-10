@@ -1,17 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows.Controls;
 
 namespace wsr_pos
 {
@@ -29,7 +16,7 @@ namespace wsr_pos
 			InitializeComponent();
 
 			canvas.Width = 1280;
-			canvas.Height = 750;
+			canvas.Height = 974;
 
 			setOrderItemCanvse();
 			setTotalCanvas();
@@ -57,7 +44,7 @@ namespace wsr_pos
 		private void setMenuItemCanvas()
 		{
 			mMenuItemCanvas = new MenuItemCanvas(null, mOrderItemCanvas.addOrderItem);
-			mMenuItemCanvas.setPosition(0, 350, 1280, 400);
+			mMenuItemCanvas.setPosition(0, 470, 1280, 624);
 			canvas.Children.Add(mMenuItemCanvas);
 		}
 	}

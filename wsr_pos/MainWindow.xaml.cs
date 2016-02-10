@@ -11,17 +11,44 @@ namespace wsr_pos
 	/// </summary>
 	public partial class MainWindow : Window
     {
+		public static uint WIDTH = 1280;
+		public static uint HEIGHT = 1024;
+
+		public enum MODE
+		{
+			ORDER,
+			SAVED,
+			SETTINGS,
+		};
+
 		private Canvas mTitleBar;
 		private OrderMain mOrderMain;
+
+		private MODE mMode;
 
 		public MainWindow()
         {
             InitializeComponent();
 
+			setWindow();
+
+			mMode = MODE.ORDER;
+
 			setTitle();
 			setMode();
 			//Discount d = new Discount();
 			//d.ShowDialog();
+		}
+
+		private void setWindow()
+		{
+			Top = 0;
+			Left = 0;
+			Width = WIDTH;
+			Height = HEIGHT;
+
+			WindowStyle = WindowStyle.None;
+			ResizeMode = ResizeMode.NoResize;
 		}
 
 		private void setTitle()
@@ -47,37 +74,8 @@ namespace wsr_pos
 			title_text.Foreground = MetrialColor.getBrush(MetrialColor.Name.White);
 			mTitleBar.Children.Add(title_text);
 
-			/*
-			{
-				System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
-				Stream stream = assembly.GetManifestResourceStream("wsr_pos.Image.menu_white_36x36.png");
-				BitmapImage bitmap_image = new BitmapImage();
-
-				bitmap_image.BeginInit();
-				bitmap_image.StreamSource = stream;
-				bitmap_image.CacheOption = BitmapCacheOption.OnLoad;
-				bitmap_image.EndInit();
-
-				RenderOptions.SetBitmapScalingMode(bitmap_image, BitmapScalingMode.HighQuality);
-
-				ImageBrush image_brush = new ImageBrush();
-				image_brush.ImageSource = bitmap_image;
-
-				Button menu_button = new Button();
-				Canvas.SetLeft(menu_button, 10);
-				Canvas.SetTop(menu_button, 7);
-				menu_button.Width = 36;
-				menu_button.Height = 36;
-				menu_button.Background = image_brush;
-
-				mTitleBar.Children.Add(menu_button);
-			}
-			*/
 			RectButton rb = new RectButton(36, 36);
 			rb.setBackgroundImage("menu_white_36x36.png", "menu_white_27x27.png");
-			//rb.setBackgroundImage("menu_white_36x36.png", "add_circle_grey600_36x36.png");
-			//rb.setText("aaaaa");
-			//rb.setBackgroundColor(MetrialColor.Name.Indigo);
 			Canvas.SetLeft(rb, 10);
 			Canvas.SetTop(rb, 7);
 			

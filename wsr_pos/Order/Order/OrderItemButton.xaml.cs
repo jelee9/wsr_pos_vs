@@ -5,6 +5,7 @@ namespace wsr_pos
 {
 	public delegate void OrderItemIncreaseEvent(Item item);
 	public delegate void OrderItemDecreaseEvent(Item item);
+	public delegate void OrderItemDeleteEvent(Item item);
 
 	/// <summary>
 	/// Interaction logic for OrderItemButton.xaml
@@ -59,6 +60,11 @@ namespace wsr_pos
 		public static uint TOTAL_PRICE_W = SUBTOTAL_PRICE_W;
 		public static uint TOTAL_PRICE_H = SUBTOTAL_PRICE_H;
 
+		public static uint DELETE_X = TOTAL_PRICE_X + TOTAL_PRICE_W + INNER_PADDING;
+		public static uint DELETE_W = 35;
+		public static uint DELETE_H = 35;
+		public static uint DELETE_Y = ((HEIGHT - DELETE_H) / 2);
+
 		public static uint LINE_X = OUTER_PADDING;
 		public static uint LINE_W = WIDTH - SCROLL - (OUTER_PADDING * 2);
 		public static uint LINE_H = 2;
@@ -76,6 +82,7 @@ namespace wsr_pos
 		private Label mDiscountPrice;
 		private Label mDiscountPercent;
 		private Label mTotalPrice;
+		private RectButton mDelete;
 
 		public OrderItemButton(OrderItem order_item = null)
 		{
@@ -95,6 +102,7 @@ namespace wsr_pos
 			setSubTotalPrice();
 			setDiscountPrice();
 			setTotalPrice();
+			setDelete();
 
 			setLine();		
 		}
@@ -228,6 +236,16 @@ namespace wsr_pos
 			canvas.Children.Add(mTotalPrice);
 		}
 
+		private void setDelete()
+		{
+			mDelete = new RectButton(DELETE_W, DELETE_H);
+			mDelete.setBackgroundImage("delete.png", "delete.png");
+			setPosition(mDelete, DELETE_X, DELETE_Y, DELETE_W, DELETE_H);
+			mDelete.VerticalContentAlignment = VerticalAlignment.Bottom;
+			mDelete.Click += onDeleteClick;
+			canvas.Children.Add(mDelete);
+		}
+
 		private void setLine()
 		{
 			mLine = new Canvas();
@@ -241,6 +259,7 @@ namespace wsr_pos
 
 		public event OrderItemIncreaseEvent ClickIncrease;
 		public event OrderItemDecreaseEvent ClickDecrease;
+		public event OrderItemDeleteEvent ClickDelete;
 
 		public void onIncreaseClick()
 		{
@@ -255,6 +274,14 @@ namespace wsr_pos
 			if(ClickDecrease != null)
 			{
 				ClickDecrease(mOrderItem.getItem());
+			}
+		}
+
+		public void onDeleteClick()
+		{
+			if(ClickDelete != null)
+			{
+				ClickDelete(mOrderItem.getItem());
 			}
 		}
 	}

@@ -34,14 +34,14 @@ namespace wsr_pos
 			mOrderList = new List<Order>();
 
 			canvas.Width = OrderItemButton.WIDTH;
-			canvas.Height = OrderItemButton.HEIGHT * 5;
+			canvas.Height = OrderItemButton.HEIGHT * 7;
 
 			setHeaderBar();
 
 			mOrderItemButtonScrollViewer = new ScrollViewer();
 			mOrderItemButtonScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
 			mOrderItemButtonScrollViewer.Width = OrderItemButton.WIDTH;
-			mOrderItemButtonScrollViewer.Height = OrderItemButton.HEIGHT * 5;
+			mOrderItemButtonScrollViewer.Height = OrderItemButton.HEIGHT * 7;
 			Canvas.SetTop(mOrderItemButtonScrollViewer, 50);
 			Canvas.SetLeft(mOrderItemButtonScrollViewer, 0);
 			canvas.Children.Add(mOrderItemButtonScrollViewer);
@@ -156,6 +156,7 @@ namespace wsr_pos
 				order_item_button.Height = OrderItemButton.HEIGHT;
 				order_item_button.ClickIncrease += increaseQuantity;
 				order_item_button.ClickDecrease += decreaseQuantity;
+				order_item_button.ClickDelete += deleteOrderItem;
 
 				mOrderList.Add(new Order(order_item, order_item_button));
 
@@ -200,6 +201,23 @@ namespace wsr_pos
 						break;
 					}
 
+					break;
+				}
+			}
+
+			onOrderChange();
+		}
+
+		private void deleteOrderItem(Item item)
+		{
+			foreach (Order order in mOrderList)
+			{
+				if (order.item.getItem().getId() == item.getId())
+				{
+					mOrderItemButtonStackPanel.Children.Remove(order.button);
+					mOrderList.Remove(order);
+
+					Debug.Write("Button is removing : " + order.item.getItem().getName());
 					break;
 				}
 			}
