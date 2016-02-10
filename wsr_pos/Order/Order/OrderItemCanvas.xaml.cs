@@ -24,6 +24,7 @@ namespace wsr_pos
 		}
 
 		List<Order> mOrderList;
+		OrderHeader mOrderHeader;
 		ScrollViewer mOrderItemButtonScrollViewer;
 		StackPanel mOrderItemButtonStackPanel;
 
@@ -36,7 +37,7 @@ namespace wsr_pos
 			canvas.Width = OrderItemButton.WIDTH;
 			canvas.Height = OrderItemButton.HEIGHT * 7;
 
-			setHeaderBar();
+			setHeader();
 
 			mOrderItemButtonScrollViewer = new ScrollViewer();
 			mOrderItemButtonScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
@@ -53,83 +54,11 @@ namespace wsr_pos
 			Canvas.SetLeft(mOrderItemButtonStackPanel, 0);
 			mOrderItemButtonScrollViewer.Content = mOrderItemButtonStackPanel;
 		}
-		private void setPosition(FrameworkElement element, uint x, uint y, uint w, uint h)
+
+		private void setHeader()
 		{
-			Canvas.SetLeft(element, x);
-			Canvas.SetTop(element, y);
-			element.Width = w;
-			element.Height = h;
-
-			if (element.GetType() == typeof(Label))
-			{
-				((Label)element).Padding = new Thickness(0, 0, 0, 0);
-			}
-		}
-
-		private void setHeaderBar()
-		{
-			Canvas header_canvas;
-			Label name;
-			Label quantity;
-			Label sub_total_price;
-			Label discount;
-			Label total_price;
-
-			uint CANVAS_HEIGHT = 50;
-			uint LABEL_H = 30;
-			uint LABEL_Y = ((CANVAS_HEIGHT - LABEL_H) / 2);
-
-			header_canvas = new Canvas();
-			header_canvas.Height = 50;
-			header_canvas.Width = canvas.Width;
-			Canvas.SetTop(header_canvas, 0);
-			Canvas.SetLeft(header_canvas, 0);
-			canvas.Children.Add(header_canvas);
-
-			name = new Label();
-			setPosition(name, OrderItemButton.NAME_X, LABEL_Y, OrderItemButton.NAME_W, LABEL_H);
-			name.FontSize = 16;
-			name.Foreground = MetrialColor.getBrush(MetrialColor.Name.Grey, 8);
-			name.Content = "이름";
-			name.VerticalContentAlignment = VerticalAlignment.Center;
-			name.HorizontalContentAlignment = HorizontalAlignment.Left;
-			header_canvas.Children.Add(name);
-
-			quantity = new Label();
-			setPosition(quantity, OrderItemButton.QUANTITY_X, LABEL_Y, OrderItemButton.QUANTITY_W, LABEL_H);
-			quantity.FontSize = 16;
-			quantity.Foreground = MetrialColor.getBrush(MetrialColor.Name.Grey, 8);
-			quantity.Content = "수량";
-			quantity.VerticalContentAlignment = VerticalAlignment.Center;
-			quantity.HorizontalContentAlignment = HorizontalAlignment.Center;
-			header_canvas.Children.Add(quantity);
-
-			sub_total_price = new Label();
-			setPosition(sub_total_price, OrderItemButton.SUBTOTAL_PRICE_X, LABEL_Y, OrderItemButton.SUBTOTAL_PRICE_W, LABEL_H);
-			sub_total_price.FontSize = 16;
-			sub_total_price.Foreground = MetrialColor.getBrush(MetrialColor.Name.Grey, 8);
-			sub_total_price.Content = "합계";
-			sub_total_price.VerticalContentAlignment = VerticalAlignment.Center;
-			sub_total_price.HorizontalContentAlignment = HorizontalAlignment.Right;
-			header_canvas.Children.Add(sub_total_price);
-
-			discount = new Label();
-			setPosition(discount, OrderItemButton.DISCOUNT_PRICE_X, LABEL_Y, OrderItemButton.DISCOUNT_PRICE_W, LABEL_H);
-			discount.FontSize = 16;
-			discount.Foreground = MetrialColor.getBrush(MetrialColor.Name.Grey, 8);
-			discount.Content = "할인";
-			discount.VerticalContentAlignment = VerticalAlignment.Center;
-			discount.HorizontalContentAlignment = HorizontalAlignment.Right;
-			header_canvas.Children.Add(discount);
-
-			total_price = new Label();
-			setPosition(total_price, OrderItemButton.TOTAL_PRICE_X, LABEL_Y, OrderItemButton.TOTAL_PRICE_W, LABEL_H);
-			total_price.FontSize = 16;
-			total_price.Foreground = MetrialColor.getBrush(MetrialColor.Name.Grey, 8);
-			total_price.Content = "총계";
-			total_price.VerticalContentAlignment = VerticalAlignment.Center;
-			total_price.HorizontalContentAlignment = HorizontalAlignment.Right;
-			header_canvas.Children.Add(total_price);
+			mOrderHeader = new OrderHeader();
+			canvas.Children.Add(mOrderHeader);
 		}
 
 		public void addOrderItem(Item item)
@@ -161,6 +90,7 @@ namespace wsr_pos
 				mOrderList.Add(new Order(order_item, order_item_button));
 
 				mOrderItemButtonStackPanel.Children.Add(order_item_button);
+				Debug.Write("Add : " + item.getName());
 			}
 
 			onOrderChange();
@@ -174,7 +104,7 @@ namespace wsr_pos
 				{
 					order.item.increaseQuantity();
 					order.button.refreshOrder(order.item);
-					Debug.Write("Increase : " + order.item.getQuantity());
+					Debug.Write("Increase : " + order.item.getItem().getName() + "(" + order.item.getQuantity() + ")");
 					break;
 				}
 			}
@@ -190,14 +120,14 @@ namespace wsr_pos
 				{
 					order.item.decreaseQuantity();
 					order.button.refreshOrder(order.item);
-					Debug.Write("Decrease : " + order.item.getQuantity());
+					Debug.Write("Decrease : " + order.item.getItem().getName() + "(" + order.item.getQuantity() + ")");
 
 					if (order.item.getQuantity() == 0)
 					{
 						mOrderItemButtonStackPanel.Children.Remove(order.button);
 						mOrderList.Remove(order);
 
-						Debug.Write("Button is removing : " + order.item.getItem().getName());
+						Debug.Write("Remove : " + order.item.getItem().getName());
 						break;
 					}
 
@@ -217,7 +147,7 @@ namespace wsr_pos
 					mOrderItemButtonStackPanel.Children.Remove(order.button);
 					mOrderList.Remove(order);
 
-					Debug.Write("Button is removing : " + order.item.getItem().getName());
+					Debug.Write("Delete : " + order.item.getItem().getName());
 					break;
 				}
 			}
