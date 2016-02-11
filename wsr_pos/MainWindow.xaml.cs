@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.Diagnostics;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -38,6 +40,17 @@ namespace wsr_pos
 			setMode();
 			//Discount d = new Discount();
 			//d.ShowDialog();
+
+			Item item01 = new Item(0, 01, "수상스키", "", 25000, false, false, false, 0, 0, MetrialColor.Name.Green);
+
+			DBManager dbm = DBManager.getInstance();
+			dbm.addItem(item01);
+			/*
+			DateTime dt = DateTime.Now;
+			long ab = dt.Ticks;
+			string a = string.Format("{0:yyyy/MM/dd-HH:mm:ss}", dt);
+			Debug.Print(a);
+			*/
 		}
 
 		private void setWindow()

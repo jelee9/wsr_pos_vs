@@ -16,6 +16,8 @@ namespace wsr_pos
 		private uint mPositionY;
 		private MetrialColor.Name mColorName;
 		private List<uint> mSubItemIdList;
+		private long mCreateTime;
+		private long mDeleteTime;
 
 		public Item(uint category_id = 0, uint id = 0, string name = "", string comment = "", uint price = 0, bool discout = false, bool print = false, bool print_together = false, uint position_x = 0, uint position_y = 0, MetrialColor.Name color_name = MetrialColor.Name.BlueGrey, List<uint> sub_item_id_list = null)
 		{

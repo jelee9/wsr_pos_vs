@@ -49,6 +49,37 @@ namespace wsr_pos
 		private static string[] GREY		= {"#FFF5F5F5","#FFEEEEEE","#FFE0E0E0","#FFBDBDBD","#FF9E9E9E","#FF757575","#FF616161","#FF424242","#FF212121",};
 		private static string[] BLUE_GREY	= {"#FFCFD8DC","#FFB0BBC5","#FF90A4AE","#FF78909C","#FF607D8B","#FF546E7A","#FF455A64","#FF37474F","#FF263238",};
 
+		public static Name getName(uint number)
+		{
+			Name name = Name.Red;
+
+			switch(number)
+			{
+				case 0:		return Name.Red;
+				case 1:		return Name.Pink;
+				case 2:		return Name.Purple;
+				case 3:		return Name.DeepPurple;
+				case 4:		return Name.Indigo;
+				case 5:		return Name.Blue;
+				case 6:		return Name.LightBlue;
+				case 7:		return Name.Cyan;
+				case 8:		return Name.Teal;
+				case 9:		return Name.Green;
+				case 10:	return Name.LightGreen;
+				case 11:	return Name.Lime;
+				case 12:	return Name.Yellow;
+				case 13:	return Name.Amber;
+				case 14:	return Name.Orange;
+				case 15:	return Name.DeepOrange;
+				case 16:	return Name.Brown;
+				case 17:	return Name.Grey;
+				case 18:	return Name.BlueGrey;
+				case 19:	return Name.Black;
+				default:	return Name.White;
+			}
+
+			return name;
+		}
 		public static Brush getBrush(Name name, int num = 4)
 		{
 			var converter = new System.Windows.Media.BrushConverter();
