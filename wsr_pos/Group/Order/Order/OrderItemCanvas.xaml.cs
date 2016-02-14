@@ -61,13 +61,13 @@ namespace wsr_pos
 			canvas.Children.Add(mOrderHeader);
 		}
 
-		public void addOrderItem(Item item)
+		public void addOrderItem(ItemLayout item_layoutm)
 		{
 			bool is_already_added = false;
 
 			foreach (Order order in mOrderList)
 			{
-				if (order.item.getItem().getId() == item.getId())
+				if (order.item.getItem().getId() == item_layoutm.getId())
 				{
 					order.item.increaseQuantity();
 					is_already_added = true;
@@ -78,7 +78,7 @@ namespace wsr_pos
 
 			if (is_already_added == false)
 			{
-				OrderItem order_item = new OrderItem(item);
+				OrderItem order_item = new OrderItem(item_layoutm.getItem());
 
 				OrderItemButton order_item_button = new OrderItemButton(order_item);
 				order_item_button.Width = OrderItemButton.WIDTH;
@@ -90,7 +90,7 @@ namespace wsr_pos
 				mOrderList.Add(new Order(order_item, order_item_button));
 
 				mOrderItemButtonStackPanel.Children.Add(order_item_button);
-				Debug.Write("Add : " + item.getName());
+				Debug.Write("Add : " + item_layoutm.getItem().getName());
 			}
 
 			onOrderChange();

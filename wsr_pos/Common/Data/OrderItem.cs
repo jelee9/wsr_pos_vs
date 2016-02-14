@@ -20,6 +20,7 @@ namespace wsr_pos
 		private uint mQuantity;
 		private uint mSubTotalPrice;
 		private DiscountType mDiscountType;
+
 		private uint mDiscountPrice;
 		private uint mDiscountPercent;
 		private uint mEnuriPrice;

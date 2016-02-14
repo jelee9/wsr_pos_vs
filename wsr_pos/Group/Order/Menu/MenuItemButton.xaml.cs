@@ -4,24 +4,24 @@ using System.Windows.Media;
 
 namespace wsr_pos
 {
-	public delegate void MenuItemButtonClickEvent(Item item);
+	public delegate void MenuItemButtonClickEvent(ItemLayout item_layout);
 
 	/// <summary>
 	/// Interaction logic for ItemButton.xaml
 	/// </summary>
 	public partial class MenuItemButton : UserControl
     {
-		private Item mItem;
+		private ItemLayout mItemLayout;
 
         private TextBlock mTextBlockName;
         private TextBlock mTextBlockComment;
         private TextBlock mTextBlockPrice;
 
-		public MenuItemButton(Item item)
+		public MenuItemButton(ItemLayout item_layout)
 		{
 			InitializeComponent();
 
-			mItem = item;
+			mItemLayout = item_layout;
 			setWidget();
 			setColor();
 			setPosition();
@@ -40,23 +40,23 @@ namespace wsr_pos
 			mTextBlockName = new TextBlock();
 			mTextBlockName.HorizontalAlignment = HorizontalAlignment.Center;
 			mTextBlockName.VerticalAlignment = VerticalAlignment.Center;
-			mTextBlockName.Text = mItem.getName();
+			mTextBlockName.Text = mItemLayout.getItem().getName();
 
 			mTextBlockComment = new TextBlock();
 			mTextBlockComment.HorizontalAlignment = HorizontalAlignment.Center;
 			mTextBlockComment.VerticalAlignment = VerticalAlignment.Center;
 			mTextBlockComment.FontSize = 10;
 			mTextBlockComment.FontStyle = FontStyles.Italic;
-			mTextBlockComment.Text = mItem.getComment();
+			mTextBlockComment.Text = mItemLayout.getItem().getComment();
 
 			mTextBlockPrice = new TextBlock();
 			mTextBlockPrice.HorizontalAlignment = HorizontalAlignment.Center;
 			mTextBlockPrice.VerticalAlignment = VerticalAlignment.Center;
-			mTextBlockPrice.Text = string.Format("{0:N0}", mItem.getPrice());
+			mTextBlockPrice.Text = string.Format("{0:N0}", mItemLayout.getItem().getPrice());
 
 			addTextBlock(mTextBlockName, 0);
 
-			if (mItem.getComment() != "")
+			if (mItemLayout.getItem().getComment() != "")
 			{
 				addTextBlock(mTextBlockComment, 1);
 				addTextBlock(mTextBlockPrice, 2);
@@ -81,23 +81,23 @@ namespace wsr_pos
         {
             Style style = new Style();
 
-            style.Setters.Add(new Setter(BackgroundProperty, MetrialColor.getBrush(mItem.getColorName(), 3)));
+            style.Setters.Add(new Setter(BackgroundProperty, MetrialColor.getBrush(mItemLayout.getColorName(), 3)));
 			style.Setters.Add(new Setter(ForegroundProperty, MetrialColor.getBrush(MetrialColor.Name.White)));
 
 			Trigger button_pressed_trigger = new Trigger();
 			//mouse_over_trigger.Property = UIElement.IsMouseOverProperty;
 			button_pressed_trigger.Property = Button.IsPressedProperty;
 			button_pressed_trigger.Value = true;
-			button_pressed_trigger.Setters.Add(new Setter(BackgroundProperty, MetrialColor.getBrush(mItem.getColorName(), 4)));
+			button_pressed_trigger.Setters.Add(new Setter(BackgroundProperty, MetrialColor.getBrush(mItemLayout.getColorName(), 4)));
 			button_pressed_trigger.Setters.Add(new Setter(BorderThicknessProperty, new Thickness(5)));
-			button_pressed_trigger.Setters.Add(new Setter(BorderBrushProperty, MetrialColor.getBrush(mItem.getColorName(), 1)));
+			button_pressed_trigger.Setters.Add(new Setter(BorderBrushProperty, MetrialColor.getBrush(mItemLayout.getColorName(), 1)));
 			style.Triggers.Add(button_pressed_trigger);
 
 			ControlTemplate control_template = new ControlTemplate(typeof(Button));
 			var border = new FrameworkElementFactory(typeof(Border));
 			border.Name = "button_border";
 			border.SetValue(BorderThicknessProperty, new Thickness(0));
-			border.SetValue(BorderBrushProperty, MetrialColor.getBrush(mItem.getColorName(), 3));
+			border.SetValue(BorderBrushProperty, MetrialColor.getBrush(mItemLayout.getColorName(), 3));
 			var binding = new TemplateBindingExtension();
 			binding.Property = BackgroundProperty;
 			border.SetValue(BackgroundProperty, binding);
@@ -128,7 +128,7 @@ namespace wsr_pos
 		{
 			if (Click != null)
 			{
-				Click(mItem);
+				Click(mItemLayout);
 			}
 		}
 
@@ -137,8 +137,8 @@ namespace wsr_pos
 			Width = 130;
 			Height = 70;
 
-			uint x = 30 + ((mItem.getPositionX() + 1) * 20) + (mItem.getPositionX() * 130);
-			uint y = 0 + ((mItem.getPositionY() + 1) * 20) + (mItem.getPositionY() * 70);
+			uint x = 30 + ((mItemLayout.getPositionX() + 1) * 20) + (mItemLayout.getPositionX() * 130);
+			uint y = 10 + ((mItemLayout.getPositionY() + 1) * 20) + (mItemLayout.getPositionY() * 70);
 
 			Canvas.SetLeft(this, x);
 			Canvas.SetTop(this, y);

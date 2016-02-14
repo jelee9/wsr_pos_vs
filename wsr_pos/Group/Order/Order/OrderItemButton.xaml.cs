@@ -20,7 +20,7 @@ namespace wsr_pos
 		public static uint HEIGHT = 60;
 
 		public static uint NAME_X = OUTER_PADDING;
-		public static uint NAME_W = 240;
+		public static uint NAME_W = 300;
 		public static uint NAME_H = 25;
 		public static uint NAME_Y = ((HEIGHT - NAME_H) / 2);
 
@@ -47,7 +47,7 @@ namespace wsr_pos
 
 		public static uint SUBTOTAL_PRICE_X = DECREASE_QUANTITY_X + DECREASE_QUANTITY_W + INNER_PADDING;
 		public static uint SUBTOTAL_PRICE_Y = NAME_Y;
-		public static uint SUBTOTAL_PRICE_W = 80;
+		public static uint SUBTOTAL_PRICE_W = 60;
 		public static uint SUBTOTAL_PRICE_H = NAME_H;
 
 		public static uint DISCOUNT_PRICE_X = SUBTOTAL_PRICE_X + SUBTOTAL_PRICE_W + INNER_PADDING;

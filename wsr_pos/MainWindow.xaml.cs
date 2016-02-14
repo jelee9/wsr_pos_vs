@@ -24,6 +24,7 @@ namespace wsr_pos
 		};
 
 		private Canvas mTitleBar;
+		private MenuCanvas mMenuCanvas;
 		private OrderMain mOrderMain;
 
 		private MODE mMode;
@@ -41,16 +42,20 @@ namespace wsr_pos
 			//Discount d = new Discount();
 			//d.ShowDialog();
 
-			Item item01 = new Item(0, 01, "수상스키", "", 25000, false, false, false, 0, 0, MetrialColor.Name.Green);
+			Item item01 = new Item(0, 01, "수상스키", "", 25000, false, false, false, false);
 
-			DBManager dbm = DBManager.getInstance();
-			dbm.addItem(item01);
+			//DBManager dbm = DBManager.getInstance();
+			//dbm.addItem(item01);
 			/*
 			DateTime dt = DateTime.Now;
 			long ab = dt.Ticks;
 			string a = string.Format("{0:yyyy/MM/dd-HH:mm:ss}", dt);
 			Debug.Print(a);
 			*/
+
+			mMenuCanvas = new MenuCanvas(0, 50, 300, 1024 - 50);
+			canvas.Children.Add(mMenuCanvas);
+			mMenuCanvas.Visibility = Visibility.Hidden;
 		}
 
 		private void setWindow()
@@ -91,7 +96,10 @@ namespace wsr_pos
 			rb.setBackgroundImage("menu_white_36x36.png", "menu_white_27x27.png");
 			Canvas.SetLeft(rb, 10);
 			Canvas.SetTop(rb, 7);
-			
+
+			rb.Click += showMenu;
+
+
 			mTitleBar.Children.Add(rb);
 
 			canvas.Children.Add(mTitleBar);
@@ -109,6 +117,18 @@ namespace wsr_pos
 			Canvas.SetTop(mOrderMain, 50);
 
 			canvas.Children.Add(mOrderMain);
+		}
+
+		private void showMenu()
+		{
+			if (mMenuCanvas.Visibility == Visibility.Hidden)
+			{
+				mMenuCanvas.Visibility = Visibility.Visible;
+			}
+			else
+			{
+				mMenuCanvas.Visibility = Visibility.Hidden;
+			}
 		}
     }
 }

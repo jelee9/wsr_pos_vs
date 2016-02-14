@@ -12,14 +12,10 @@ namespace wsr_pos
 		private bool mDiscount;
 		private bool mPrint;
 		private bool mPrintTogether;
-		private uint mPositionX;
-		private uint mPositionY;
-		private MetrialColor.Name mColorName;
+		private bool mPrintDot;
 		private List<uint> mSubItemIdList;
-		private long mCreateTime;
-		private long mDeleteTime;
 
-		public Item(uint category_id = 0, uint id = 0, string name = "", string comment = "", uint price = 0, bool discout = false, bool print = false, bool print_together = false, uint position_x = 0, uint position_y = 0, MetrialColor.Name color_name = MetrialColor.Name.BlueGrey, List<uint> sub_item_id_list = null)
+		public Item(uint category_id = 0, uint id = 0, string name = "", string comment = "", uint price = 0, bool discout = false, bool print = false, bool print_together = false, bool print_dot = false, List<uint> sub_item_id_list = null)
 		{
 
 			mCategoryId = category_id;
@@ -30,9 +26,7 @@ namespace wsr_pos
 			mDiscount = discout;
 			mPrint = print;
 			mPrintTogether = print_together;
-			mPositionX = position_x;
-			mPositionY = position_y;
-			mColorName = color_name;
+			mPrintDot = print_dot;
 			mSubItemIdList = sub_item_id_list;
 		}
 
@@ -76,19 +70,9 @@ namespace wsr_pos
 			return mPrintTogether;
 		}
 
-		public uint getPositionX()
+		public bool getPrintDot()
 		{
-			return mPositionX;
-		}
-
-		public uint getPositionY()
-		{
-			return mPositionY;
-		}
-
-		public MetrialColor.Name getColorName()
-		{
-			return mColorName;
+			return mPrintDot;
 		}
 
 		public List<uint> getSubItemIdList()
@@ -136,19 +120,9 @@ namespace wsr_pos
 			mPrintTogether = print_together;
 		}
 
-		public void setPositionX(uint position_x)
+		public void setPrintDot(bool print_dot)
 		{
-			mPositionX = position_x;
-		}
-
-		public void setPositionY(uint position_y)
-		{
-			mPositionY = position_y;
-		}
-
-		public void setColorName(MetrialColor.Name color_name)
-		{
-			mColorName = color_name;
+			mPrintDot = print_dot;
 		}
 
 		public void setSubItemIdList(List<uint> sub_item_id_list)

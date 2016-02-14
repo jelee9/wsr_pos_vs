@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace wsr_pos
 {
-	class DBManager
+	public class DBManager
 	{
 		public static string DB_FILE_NAME = @"Data Source=./WSR_POS.db";
 
@@ -59,9 +59,7 @@ namespace wsr_pos
 							discount INTEGER,
 							print INTEGER,
 							print_together INTEGER,
-							position_x INTEGER,
-							position_y INTEGER,
-							color INTEGER,
+							print_dot INTEGER,
 							sub_item_list TEXT,
 							create_time INTEGER,
 							delete_time INTEGER,
@@ -75,9 +73,42 @@ namespace wsr_pos
 										id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE,
 			                            position_x INTEGER,
 										position_y INTEGER,
-										color INTEGER";
+										color INTEGER,
+										create_time INTEGER,
+										delete_time INTEGER,
+										enable INTEGER)";
 			SQLiteCommand item_layout_cmd = new SQLiteCommand(item_layout_query, mConnection);
 			item_layout_cmd.ExecuteNonQuery();
+
+			string order_summary_query = @"CREATE TABLE IF NOT EXISTS order_summary
+									(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE,
+									create_time INTEGER)";
+			SQLiteCommand order_summary_cmd = new SQLiteCommand(order_summary_query, mConnection);
+			order_summary_cmd.ExecuteNonQuery();
+
+			string order_item_query = @"CREATE TABLE IF NOT EXISTS order_item
+											(order_id INTEGER,
+											item_id INTEGER,
+											id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE,
+											quantity INTEGER,
+											sub_total_price INTEGER,
+											discount_type INTEGER,
+											discount_price INTEGER,
+											discount_percent INTEGER,
+											enuri_price INTEGER,
+											enuri_percent INTEGER,
+											total_price INTEGER)";
+			SQLiteCommand order_item_cmd = new SQLiteCommand(order_item_query, mConnection);
+			order_item_cmd.ExecuteNonQuery();
+
+			string pension_query = @"CREATE TABLE IF NOT EXISTS pension
+									(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE,
+									name TEXT,
+									create_time INTEGER,
+									delete_time INTEGER,
+									enable INTEGER)";
+			SQLiteCommand pension_cmd = new SQLiteCommand(pension_query, mConnection);
+			pension_cmd.ExecuteNonQuery();
 		}
 
 		private bool insert(string tableName, Dictionary<string, string> data)
@@ -188,9 +219,7 @@ namespace wsr_pos
 				item.setDiscount(((uint)dr["discount"] == 1 ? true : false));
 				item.setPrint(((uint)dr["print"] == 1 ? true : false));
 				item.setPrintTogether(((uint)dr["print_together"] == 1 ? true : false));
-				item.setPositionX((uint)(dr["position_x"]));
-				item.setPositionY((uint)(dr["position_y"]));
-				item.setColorName(MetrialColor.getName((uint)(dr["color"])));
+				item.setPrintDot(((uint)dr["print_dot"] == 1 ? true : false));
 
 				mItemList.Add(item);
 			}
@@ -198,6 +227,8 @@ namespace wsr_pos
 
 		public List<Item> getItemList()
 		{
+			mItemList.Clear();
+			setTestItemData();
 			return mItemList;
 		}
 
@@ -225,22 +256,13 @@ namespace wsr_pos
 
 		public List<ItemLayout> getItemLayoutList()
 		{
+			mItemLayoutList.Clear();
+			setTestItemLayoutData();
 			return mItemLayoutList;
 		}
 
 		public void addItem(Item item)
 		{
-			Dictionary<string, string> set_data = new Dictionary<string, string>();
-			set_data.Add("enable", "0");
-			set_data.Add("delete_time", DateTime.Now.Ticks.ToString());
-
-			Dictionary<string, string> where_data = new Dictionary<string, string>();
-			where_data.Add("position_x", item.getPositionX().ToString());
-			where_data.Add("position_y", item.getPositionY().ToString());
-			where_data.Add("enable", "1");
-
-			update("item", set_data, where_data);
-
 			Dictionary<string, string> insert_data = new Dictionary<string, string>();
 			insert_data.Add("category_id", item.getCategoryId().ToString());
 			insert_data.Add("name", item.getName());
@@ -249,9 +271,7 @@ namespace wsr_pos
 			insert_data.Add("discount", (item.getDiscount() ? 1 : 0).ToString());
 			insert_data.Add("print", (item.getPrint() ? 1 : 0).ToString());
 			insert_data.Add("print_together", (item.getPrintTogether() ? 1 : 0).ToString());
-			insert_data.Add("position_x", item.getPositionX().ToString());
-			insert_data.Add("position_y", item.getPositionY().ToString());
-			insert_data.Add("color", Convert.ToInt32(item.getColorName()).ToString());
+			insert_data.Add("print_dot", (item.getPrintDot() ? 1 : 0).ToString());
 			insert_data.Add("create_time", DateTime.Now.Ticks.ToString());
 
 			insert("item", insert_data);
@@ -306,6 +326,107 @@ namespace wsr_pos
 			where_data.Add("id", item_layout.getId().ToString());
 
 			update("item_layout", set_data, where_data);
+		}
+
+		public void setTestItemData()
+		{
+			Item item01 = new Item(0, 01, "수상스키", "", 25000, false, false, false, false);
+			Item item02 = new Item(0, 02, "수상스키(초보)", "", 60000, false, false, false, false);
+			Item item03 = new Item(0, 03, "웨이크보드", "", 25000, false, false, false, false);
+			Item item04 = new Item(0, 04, "웨이크보드(초보)", "", 60000, false, false, false, false);
+
+			Item item05 = new Item(1, 05, "바나나보트", "", 20000, false, false, false, false);
+			Item item06 = new Item(1, 06, "밴드 웨곤", "", 20000, false, false, false, false);
+			Item item07 = new Item(1, 07, "더블땅콩", "", 25000, false, false, false, false);
+			Item item08 = new Item(1, 08, "디스코팡팡", "", 25000, false, false, false, false);
+			Item item09 = new Item(1, 09, "뉴 디스코팡팡", "", 25000, false, false, false, false);
+			Item item10 = new Item(1, 10, "헥사곤", "", 25000, false, false, false, false);
+			Item item11 = new Item(1, 11, "마블", "", 25000, false, false, false, false);
+			Item item12 = new Item(1, 12, "날으는 바나나", "", 25000, false, false, false, false);
+
+			Item item13 = new Item(1, 13, "보팅 (A)", "바나나보트/밴드 웨곤/뉴 디스코팡팡/날으는 바나나", 50000, false, false, false, false);
+			Item item14 = new Item(1, 14, "보팅 (B)", "", 100000, false, false, false, false);
+			Item item15 = new Item(1, 15, "보팅 (C)", "수상스키(초보)/날으는 바나나/날으는 바나나", 150000, false, false, false, false);
+
+
+			Item item16 = new Item(2, 16, "물놀이 패키지 1", "마블/바나나/밴드웨곤 2종", 28000, false, false, false, false);
+			Item item17 = new Item(2, 17, "물놀이 패키지 2", "물놀이 2종", 30000, false, false, false, false);
+			Item item18 = new Item(2, 18, "물놀이 패키지 3", "물놀이 3종", 45500, false, false, false, false);
+			Item item19 = new Item(2, 19, "물놀이 패키지 4", "물놀이 4종", 59500, false, false, false, false);
+			Item item20 = new Item(2, 20, "수상 패키지 1", "수상스키 2회 + 물놀이", 61000, false, false, false, false);
+			Item item21 = new Item(2, 21, "수상 패키지 2", "수상스키 2회 + 물놀이 2종", 73500, false, false, false, false);
+
+			mItemList.Add(item01);
+			mItemList.Add(item02);
+			mItemList.Add(item03);
+			mItemList.Add(item04);
+			mItemList.Add(item05);
+			mItemList.Add(item06);
+			mItemList.Add(item07);
+			mItemList.Add(item08);
+			mItemList.Add(item09);
+			mItemList.Add(item10);
+			mItemList.Add(item11);
+			mItemList.Add(item12);
+			mItemList.Add(item13);
+			mItemList.Add(item14);
+			mItemList.Add(item15);
+			mItemList.Add(item16);
+			mItemList.Add(item17);
+			mItemList.Add(item18);
+			mItemList.Add(item19);
+			mItemList.Add(item20);
+			mItemList.Add(item21);
+		}
+
+		private void setTestItemLayoutData()
+		{ 
+			ItemLayout item_layout01 = new ItemLayout(01, 01, 0, 0, MetrialColor.Name.Amber);
+			ItemLayout item_layout02 = new ItemLayout(02, 02, 1, 0, MetrialColor.Name.Amber);
+			ItemLayout item_layout03 = new ItemLayout(03, 03, 0, 1, MetrialColor.Name.Amber);
+			ItemLayout item_layout04 = new ItemLayout(04, 04, 1, 1, MetrialColor.Name.Amber);
+
+			ItemLayout item_layout05 = new ItemLayout(05, 05, 2, 0, MetrialColor.Name.Blue);
+			ItemLayout item_layout06 = new ItemLayout(06, 06, 3, 0, MetrialColor.Name.Blue);
+			ItemLayout item_layout07 = new ItemLayout(07, 07, 4, 0, MetrialColor.Name.Blue);
+			ItemLayout item_layout08 = new ItemLayout(08, 08, 5, 0, MetrialColor.Name.Blue);
+			ItemLayout item_layout09 = new ItemLayout(09, 09, 2, 1, MetrialColor.Name.Blue);
+			ItemLayout item_layout10 = new ItemLayout(10, 10, 3, 1, MetrialColor.Name.Blue);
+			ItemLayout item_layout11 = new ItemLayout(11, 11, 4, 1, MetrialColor.Name.Blue);
+			ItemLayout item_layout12 = new ItemLayout(12, 12, 5, 1, MetrialColor.Name.Blue);
+
+			ItemLayout item_layout13 = new ItemLayout(13, 13, 2, 2, MetrialColor.Name.Amber);
+			ItemLayout item_layout14 = new ItemLayout(14, 14, 3, 2, MetrialColor.Name.Amber);
+			ItemLayout item_layout15 = new ItemLayout(15, 15, 4, 2, MetrialColor.Name.Amber);
+
+			ItemLayout item_layout16 = new ItemLayout(16, 16, 6, 0, MetrialColor.Name.Amber);
+			ItemLayout item_layout17 = new ItemLayout(17, 17, 7, 0, MetrialColor.Name.Amber);
+			ItemLayout item_layout18 = new ItemLayout(18, 18, 6, 1, MetrialColor.Name.Amber);
+			ItemLayout item_layout19 = new ItemLayout(19, 19, 7, 1, MetrialColor.Name.Amber);
+			ItemLayout item_layout20 = new ItemLayout(20, 20, 6, 2, MetrialColor.Name.Amber);
+			ItemLayout item_layout21 = new ItemLayout(21, 21, 7, 2, MetrialColor.Name.Amber);
+
+			mItemLayoutList.Add(item_layout01);
+			mItemLayoutList.Add(item_layout02);
+			mItemLayoutList.Add(item_layout03);
+			mItemLayoutList.Add(item_layout04);
+			mItemLayoutList.Add(item_layout05);
+			mItemLayoutList.Add(item_layout06);
+			mItemLayoutList.Add(item_layout07);
+			mItemLayoutList.Add(item_layout08);
+			mItemLayoutList.Add(item_layout09);
+			mItemLayoutList.Add(item_layout10);
+			mItemLayoutList.Add(item_layout11);
+			mItemLayoutList.Add(item_layout12);
+			mItemLayoutList.Add(item_layout13);
+			mItemLayoutList.Add(item_layout14);
+			mItemLayoutList.Add(item_layout15);
+			mItemLayoutList.Add(item_layout16);
+			mItemLayoutList.Add(item_layout17);
+			mItemLayoutList.Add(item_layout18);
+			mItemLayoutList.Add(item_layout19);
+			mItemLayoutList.Add(item_layout20);
+			mItemLayoutList.Add(item_layout21);
 		}
 	}
 }
