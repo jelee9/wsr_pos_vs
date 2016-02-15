@@ -47,22 +47,22 @@ namespace wsr_pos.Setting.Item
 		public static readonly uint PRICE_W = 100;
 		public static readonly uint PRICE_H = COMMENT_H;
 
-		public static readonly uint PRINT_X = PRICE_X + PRICE_W + INNER_PADDING + INNER_PADDING;
-		public static readonly uint PRINT_Y = PRICE_Y;
-		public static readonly uint PRINT_W = 50;
-		public static readonly uint PRINT_H = PRICE_H;
+		public static readonly uint DISCOUNT_X = PRICE_X + PRICE_W + INNER_PADDING;
+		public static readonly uint DISCOUNT_Y = PRICE_Y;
+		public static readonly uint DISCOUNT_W = 50;
+		public static readonly uint DISCOUNT_H = PRICE_H;
 
-		public static readonly uint PRINT_TOGETHER_X = PRINT_X + PRINT_W + INNER_PADDING;
-		public static readonly uint PRINT_TOGETHER_Y = PRINT_Y;
+		public static readonly uint PRINT_TOGETHER_X = DISCOUNT_X + DISCOUNT_W + INNER_PADDING;
+		public static readonly uint PRINT_TOGETHER_Y = DISCOUNT_Y;
 		public static readonly uint PRINT_TOGETHER_W = 50;
-		public static readonly uint PRINT_TOGETHER_H = PRINT_H;
+		public static readonly uint PRINT_TOGETHER_H = DISCOUNT_H;
 
 		public static readonly uint PRINT_DOT_X = PRINT_TOGETHER_X + PRINT_TOGETHER_W + INNER_PADDING;
 		public static readonly uint PRINT_DOT_Y = PRINT_TOGETHER_Y;
 		public static readonly uint PRINT_DOT_W = 50;
 		public static readonly uint PRINT_DOT_H = PRINT_TOGETHER_H;
 
-		public static readonly uint DELETE_X = PRINT_DOT_X + PRINT_DOT_W;
+		public static readonly uint DELETE_X = PRINT_DOT_X + PRINT_DOT_W + INNER_PADDING;
 		public static readonly uint DELETE_W = 35;
 		public static readonly uint DELETE_H = 35;
 		public static readonly uint DELETE_Y = ((HEIGHT - DELETE_H) / 2);
@@ -76,9 +76,10 @@ namespace wsr_pos.Setting.Item
 		private Label mCategory;
 		private Label mComment;
 		private Label mPrice;
-		private Label mPrint;
+		private Label mDiscount;
 		private Label mPrintTogether;
 		private Label mPrintDot;
+		private Canvas mLine;
 
 		private  RectButton mDelete;
 
@@ -137,6 +138,7 @@ namespace wsr_pos.Setting.Item
 				}
 			}
 
+			mCategory.HorizontalContentAlignment = HorizontalAlignment.Center;
 			mCategory.VerticalContentAlignment = VerticalAlignment.Center;
 			canvas.Children.Add(mCategory);
 
@@ -145,6 +147,7 @@ namespace wsr_pos.Setting.Item
 			mComment.FontSize = 14;
 			mComment.Foreground = MetrialColor.getBrush(MetrialColor.Name.Grey, 8);
 			mComment.Content = mItem.getComment();
+			mComment.HorizontalContentAlignment = HorizontalAlignment.Center;
 			mComment.VerticalContentAlignment = VerticalAlignment.Center;
 			canvas.Children.Add(mComment);
 
@@ -157,19 +160,21 @@ namespace wsr_pos.Setting.Item
 			mPrice.HorizontalContentAlignment = HorizontalAlignment.Right;
 			canvas.Children.Add(mPrice);
 
-			mPrint = new Label();
-			setPosition(mPrint, PRINT_X, PRINT_Y, PRINT_W, PRINT_H);
-			mPrint.FontSize = 16;
-			mPrint.Foreground = MetrialColor.getBrush(MetrialColor.Name.Grey, 8);
-			mPrint.Content = (mItem.getPrint() ? "O" : "X");
-			mPrint.VerticalContentAlignment = VerticalAlignment.Center;
-			canvas.Children.Add(mPrint);
+			mDiscount = new Label();
+			setPosition(mDiscount, DISCOUNT_X, DISCOUNT_Y, DISCOUNT_W, DISCOUNT_H);
+			mDiscount.FontSize = 16;
+			mDiscount.Foreground = MetrialColor.getBrush(MetrialColor.Name.Grey, 8);
+			mDiscount.Content = (mItem.getDiscount() ? "O" : "X");
+			mDiscount.HorizontalContentAlignment = HorizontalAlignment.Center;
+			mDiscount.VerticalContentAlignment = VerticalAlignment.Center;
+			canvas.Children.Add(mDiscount);
 
 			mPrintTogether = new Label();
 			setPosition(mPrintTogether, PRINT_TOGETHER_X, PRINT_TOGETHER_Y, PRINT_TOGETHER_W, PRINT_TOGETHER_H);
 			mPrintTogether.FontSize = 16;
 			mPrintTogether.Foreground = MetrialColor.getBrush(MetrialColor.Name.Grey, 8);
 			mPrintTogether.Content = (mItem.getPrintTogether() ? "O" : "X");
+			mPrintTogether.HorizontalContentAlignment = HorizontalAlignment.Center;
 			mPrintTogether.VerticalContentAlignment = VerticalAlignment.Center;
 			canvas.Children.Add(mPrintTogether);
 
@@ -178,6 +183,7 @@ namespace wsr_pos.Setting.Item
 			mPrintDot.FontSize = 16;
 			mPrintDot.Foreground = MetrialColor.getBrush(MetrialColor.Name.Grey, 8);
 			mPrintDot.Content = (mItem.getPrintDot() ? "O" : "X");
+			mPrintDot.HorizontalContentAlignment = HorizontalAlignment.Center;
 			mPrintDot.VerticalContentAlignment = VerticalAlignment.Center;
 			canvas.Children.Add(mPrintDot);
 
@@ -186,6 +192,10 @@ namespace wsr_pos.Setting.Item
 			mDelete.setBackgroundImage("delete.png", "delete.png");
 			canvas.Children.Add(mDelete);
 
+			mLine = new Canvas();
+			setPosition(mLine, LINE_X, LINE_Y, LINE_W, LINE_H);
+			mLine.Background = MetrialColor.getBrush(MetrialColor.Name.Grey, 4);
+			canvas.Children.Add(mLine);
 		}
 
 		public void setBackgroundColor(MetrialColor.Name color = MetrialColor.Name.DeepOrange, int normal = 3, int press = 5)

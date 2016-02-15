@@ -33,7 +33,7 @@ namespace wsr_pos.Setting.Item
 		}
 
 		List<Item> mItemrList;
-		//ItemHeader mItemHeader;
+		SettingItemHeader mSettingItemHeader;
 		ScrollViewer mSettingItemButtonScrollViewer;
 		StackPanel mSettingItemButtonStackPanel;
 
@@ -45,14 +45,14 @@ namespace wsr_pos.Setting.Item
 
 			canvas.Width = SettingItemButton.WIDTH;
 			canvas.Height = SettingItemButton.HEIGHT * 7;
-
-			//setHeader();
+			canvas.Background = MetrialColor.getBrush(MetrialColor.Name.LightBlue, 0);
+			setHeader();
 
 			mSettingItemButtonScrollViewer = new ScrollViewer();
 			mSettingItemButtonScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
 			mSettingItemButtonScrollViewer.Width = SettingItemButton.WIDTH;
-			mSettingItemButtonScrollViewer.Height = SettingItemButton.HEIGHT * 16;
-			Canvas.SetTop(mSettingItemButtonScrollViewer, 50);
+			mSettingItemButtonScrollViewer.Height = SettingItemButton.HEIGHT * 14;
+			Canvas.SetTop(mSettingItemButtonScrollViewer, 100);
 			Canvas.SetLeft(mSettingItemButtonScrollViewer, 50);
 			canvas.Children.Add(mSettingItemButtonScrollViewer);
 
@@ -62,8 +62,17 @@ namespace wsr_pos.Setting.Item
 			Canvas.SetTop(mSettingItemButtonStackPanel, 0);
 			Canvas.SetLeft(mSettingItemButtonStackPanel, 0);
 			mSettingItemButtonScrollViewer.Content = mSettingItemButtonStackPanel;
+			mSettingItemButtonStackPanel.Background = MetrialColor.getBrush(MetrialColor.Name.LightBlue, 0);
 
 			updateSettingItemButton();
+		}
+
+		private void setHeader()
+		{
+			mSettingItemHeader = new SettingItemHeader();
+			Canvas.SetLeft(mSettingItemHeader, 50);
+			Canvas.SetTop(mSettingItemHeader, 50);
+			canvas.Children.Add(mSettingItemHeader);
 		}
 
 		private void updateSettingItemButton()
@@ -75,7 +84,7 @@ namespace wsr_pos.Setting.Item
 				SettingItemButton setting_item_button = new SettingItemButton(item);
 				setting_item_button.Width = SettingItemButton.WIDTH;
 				setting_item_button.Height = SettingItemButton.HEIGHT;
-				setting_item_button.setBackgroundColor(MetrialColor.Name.Grey, 2, 3);
+				setting_item_button.setBackgroundColor(MetrialColor.Name.White);
 
 				mItemrList.Add(new Item(item, setting_item_button));
 
