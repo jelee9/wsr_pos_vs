@@ -20,17 +20,17 @@ namespace wsr_pos
 	/// </summary>
 	public partial class TitleBar : UserControl
 	{
-		public static uint HEIGHT = 50;
+		public static readonly uint HEIGHT = 50;
 
-		public static uint TEXT_W = 400;
-		public static uint TEXT_H = HEIGHT;
-		public static uint TEXT_X = ((MainWindow.WIDTH - TEXT_W) / 2);
-		public static uint TEXT_Y = 0;
+		public static readonly uint TEXT_W = 400;
+		public static readonly uint TEXT_H = HEIGHT;
+		public static readonly uint TEXT_X = ((MainWindow.WIDTH - TEXT_W) / 2);
+		public static readonly uint TEXT_Y = 0;
 
-		public static uint MENU_BUTTON_W = 36;
-		public static uint MENU_BUTTON_H = 36;
-		public static uint MENU_BUTTON_X = 10;
-		public static uint MENU_BUTTON_Y = ((HEIGHT - MENU_BUTTON_H) / 2);
+		public static readonly uint MENU_BUTTON_W = 36;
+		public static readonly uint MENU_BUTTON_H = 36;
+		public static readonly uint MENU_BUTTON_X = 10;
+		public static readonly uint MENU_BUTTON_Y = ((HEIGHT - MENU_BUTTON_H) / 2);
 
 		private Label mTextLabel;
 		private RectButton mMenuButton;

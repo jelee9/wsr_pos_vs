@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="wsr_pos.Setting.Item.SettingItemButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:wsr_pos.Setting.Item"
+             mc:Ignorable="d" 
+             d:DesignHeight="60" d:DesignWidth="600">
+	<Button Name="button" Padding="10">
+		<Button.Content>
+			<Canvas Name="canvas">
+
+			</Canvas>
+		</Button.Content>
+	</Button>
+
+
+</UserControl>

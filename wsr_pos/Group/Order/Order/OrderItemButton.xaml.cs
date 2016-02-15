@@ -12,63 +12,63 @@ namespace wsr_pos
 	/// </summary>
 	public partial class OrderItemButton : UserControl
 	{
-		public static uint OUTER_PADDING = 20;
-		public static uint INNER_PADDING = 40;
+		public static readonly uint OUTER_PADDING = 20;
+		public static readonly uint INNER_PADDING = 40;
 
-		public static uint WIDTH = 900;
-		public static uint SCROLL = 20;
-		public static uint HEIGHT = 60;
+		public static readonly uint WIDTH = 900;
+		public static readonly uint SCROLL = 20;
+		public static readonly uint HEIGHT = 60;
 
-		public static uint NAME_X = OUTER_PADDING;
-		public static uint NAME_W = 300;
-		public static uint NAME_H = 25;
-		public static uint NAME_Y = ((HEIGHT - NAME_H) / 2);
+		public static readonly uint NAME_X = OUTER_PADDING;
+		public static readonly uint NAME_W = 300;
+		public static readonly uint NAME_H = 25;
+		public static readonly uint NAME_Y = ((HEIGHT - NAME_H) / 2);
 
-		public static uint COMMENT_X = OUTER_PADDING;
-		public static uint COMMENT_W = NAME_W;
-		public static uint COMMENT_H = 20;
-		public static uint NAME_Y_WITH_COMMENT = ((HEIGHT - (NAME_H + COMMENT_H)) / 2);
-		public static uint COMMENT_Y = (NAME_Y_WITH_COMMENT + NAME_H);
+		public static readonly uint COMMENT_X = OUTER_PADDING;
+		public static readonly uint COMMENT_W = NAME_W;
+		public static readonly uint COMMENT_H = 20;
+		public static readonly uint NAME_Y_WITH_COMMENT = ((HEIGHT - (NAME_H + COMMENT_H)) / 2);
+		public static readonly uint COMMENT_Y = (NAME_Y_WITH_COMMENT + NAME_H);
 
-		public static uint INCREASE_QUANTITY_X = NAME_X + NAME_W + INNER_PADDING;
-		public static uint INCREASE_QUANTITY_W = 35;
-		public static uint INCREASE_QUANTITY_H = 35;
-		public static uint INCREASE_QUANTITY_Y = ((HEIGHT - INCREASE_QUANTITY_H) / 2);
+		public static readonly uint INCREASE_QUANTITY_X = NAME_X + NAME_W + INNER_PADDING;
+		public static readonly uint INCREASE_QUANTITY_W = 35;
+		public static readonly uint INCREASE_QUANTITY_H = 35;
+		public static readonly uint INCREASE_QUANTITY_Y = ((HEIGHT - INCREASE_QUANTITY_H) / 2);
 
-		public static uint QUANTITY_X = INCREASE_QUANTITY_X + INCREASE_QUANTITY_W;
-		public static uint QUANTITY_Y = NAME_Y;
-		public static uint QUANTITY_W = 50;
-		public static uint QUANTITY_H = NAME_H;
+		public static readonly uint QUANTITY_X = INCREASE_QUANTITY_X + INCREASE_QUANTITY_W;
+		public static readonly uint QUANTITY_Y = NAME_Y;
+		public static readonly uint QUANTITY_W = 50;
+		public static readonly uint QUANTITY_H = NAME_H;
 
-		public static uint DECREASE_QUANTITY_X = QUANTITY_X + QUANTITY_W;
-		public static uint DECREASE_QUANTITY_W = 35;
-		public static uint DECREASE_QUANTITY_H = 35;
-		public static uint DECREASE_QUANTITY_Y = ((HEIGHT - DECREASE_QUANTITY_H) / 2);
+		public static readonly uint DECREASE_QUANTITY_X = QUANTITY_X + QUANTITY_W;
+		public static readonly uint DECREASE_QUANTITY_W = 35;
+		public static readonly uint DECREASE_QUANTITY_H = 35;
+		public static readonly uint DECREASE_QUANTITY_Y = ((HEIGHT - DECREASE_QUANTITY_H) / 2);
 
-		public static uint SUBTOTAL_PRICE_X = DECREASE_QUANTITY_X + DECREASE_QUANTITY_W + INNER_PADDING;
-		public static uint SUBTOTAL_PRICE_Y = NAME_Y;
-		public static uint SUBTOTAL_PRICE_W = 60;
-		public static uint SUBTOTAL_PRICE_H = NAME_H;
+		public static readonly uint SUBTOTAL_PRICE_X = DECREASE_QUANTITY_X + DECREASE_QUANTITY_W + INNER_PADDING;
+		public static readonly uint SUBTOTAL_PRICE_Y = NAME_Y;
+		public static readonly uint SUBTOTAL_PRICE_W = 60;
+		public static readonly uint SUBTOTAL_PRICE_H = NAME_H;
 
-		public static uint DISCOUNT_PRICE_X = SUBTOTAL_PRICE_X + SUBTOTAL_PRICE_W + INNER_PADDING;
-		public static uint DISCOUNT_PRICE_Y = SUBTOTAL_PRICE_Y;
-		public static uint DISCOUNT_PRICE_W = SUBTOTAL_PRICE_W;
-		public static uint DISCOUNT_PRICE_H = SUBTOTAL_PRICE_H;
+		public static readonly uint DISCOUNT_PRICE_X = SUBTOTAL_PRICE_X + SUBTOTAL_PRICE_W + INNER_PADDING;
+		public static readonly uint DISCOUNT_PRICE_Y = SUBTOTAL_PRICE_Y;
+		public static readonly uint DISCOUNT_PRICE_W = SUBTOTAL_PRICE_W;
+		public static readonly uint DISCOUNT_PRICE_H = SUBTOTAL_PRICE_H;
 
-		public static uint TOTAL_PRICE_X = DISCOUNT_PRICE_X + DISCOUNT_PRICE_W + INNER_PADDING;
-		public static uint TOTAL_PRICE_Y = SUBTOTAL_PRICE_Y;
-		public static uint TOTAL_PRICE_W = SUBTOTAL_PRICE_W;
-		public static uint TOTAL_PRICE_H = SUBTOTAL_PRICE_H;
+		public static readonly uint TOTAL_PRICE_X = DISCOUNT_PRICE_X + DISCOUNT_PRICE_W + INNER_PADDING;
+		public static readonly uint TOTAL_PRICE_Y = SUBTOTAL_PRICE_Y;
+		public static readonly uint TOTAL_PRICE_W = SUBTOTAL_PRICE_W;
+		public static readonly uint TOTAL_PRICE_H = SUBTOTAL_PRICE_H;
 
-		public static uint DELETE_X = TOTAL_PRICE_X + TOTAL_PRICE_W + INNER_PADDING;
-		public static uint DELETE_W = 35;
-		public static uint DELETE_H = 35;
-		public static uint DELETE_Y = ((HEIGHT - DELETE_H) / 2);
+		public static readonly uint DELETE_X = TOTAL_PRICE_X + TOTAL_PRICE_W + INNER_PADDING;
+		public static readonly uint DELETE_W = 35;
+		public static readonly uint DELETE_H = 35;
+		public static readonly uint DELETE_Y = ((HEIGHT - DELETE_H) / 2);
 
-		public static uint LINE_X = OUTER_PADDING;
-		public static uint LINE_W = WIDTH - SCROLL - (OUTER_PADDING * 2);
-		public static uint LINE_H = 2;
-		public static uint LINE_Y = HEIGHT - LINE_H;
+		public static readonly uint LINE_X = OUTER_PADDING;
+		public static readonly uint LINE_W = WIDTH - SCROLL - (OUTER_PADDING * 2);
+		public static readonly uint LINE_H = 2;
+		public static readonly uint LINE_Y = HEIGHT - LINE_H;
 
 		private OrderItem mOrderItem;
 

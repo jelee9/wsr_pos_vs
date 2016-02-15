@@ -6,14 +6,25 @@ using System.Threading.Tasks;
 
 namespace wsr_pos
 {
-	class Category
+	public class Category
 	{
 		private uint mId;
 		private string mName;
 
-		public Category(string name)
+		public Category(uint id = 0, string name = "")
 		{
+			mId = id;
 			mName = name;
+		}
+
+		public uint getId()
+		{
+			return mId;
+		}
+
+		public void setId(uint id)
+		{
+			mId = id;
 		}
 
 		public string getName()
@@ -21,7 +32,7 @@ namespace wsr_pos
 			return mName;
 		}
 
-		public void setname(string name)
+		public void setName(string name)
 		{
 			mName = name;
 		}

@@ -13,8 +13,8 @@ namespace wsr_pos
 	/// </summary>
 	public partial class MainWindow : Window
     {
-		public static uint WIDTH = 1280;
-		public static uint HEIGHT = 1024;
+		public static readonly uint WIDTH = 1280;
+		public static readonly uint HEIGHT = 1024;
 
 		public enum MODE
 		{
@@ -26,6 +26,7 @@ namespace wsr_pos
 		private Canvas mTitleBar;
 		private MenuCanvas mMenuCanvas;
 		private OrderMain mOrderMain;
+		private wsr_pos.Setting.Item.SettingItemCanvas mSettingItemCanvas;
 
 		private MODE mMode;
 
@@ -107,7 +108,8 @@ namespace wsr_pos
 
 		private void setMode()
 		{
-			setOrder();
+			//setOrder();
+			setSettingItem();
 		}
 
 		private void setOrder()
@@ -117,6 +119,15 @@ namespace wsr_pos
 			Canvas.SetTop(mOrderMain, 50);
 
 			canvas.Children.Add(mOrderMain);
+		}
+
+		private void setSettingItem()
+		{
+			mSettingItemCanvas = new wsr_pos.Setting.Item.SettingItemCanvas();
+			Canvas.SetLeft(mSettingItemCanvas, 0);
+			Canvas.SetTop(mSettingItemCanvas, 50);
+
+			canvas.Children.Add(mSettingItemCanvas);
 		}
 
 		private void showMenu()

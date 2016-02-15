@@ -19,13 +19,13 @@ namespace wsr_pos
 	/// </summary>
 	public partial class Discount : Window
 	{
-		public static uint BUTTON_WIDTH = 120;
-		public static uint BUTTON_HEIGHT = 70;
+		public static readonly uint BUTTON_WIDTH = 120;
+		public static readonly uint BUTTON_HEIGHT = 70;
 
-		public static uint LABEL_X = 0;
-		public static uint LABEL_Y = 0;
-		public static uint LABEL_WIDTH = (BUTTON_WIDTH * 3);
-		public static uint LABEL_HEIGHT = BUTTON_HEIGHT;
+		public static readonly uint LABEL_X = 0;
+		public static readonly uint LABEL_Y = 0;
+		public static readonly uint LABEL_WIDTH = (BUTTON_WIDTH * 3);
+		public static readonly uint LABEL_HEIGHT = BUTTON_HEIGHT;
 
 		private Label mLabel;
 

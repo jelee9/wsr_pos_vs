@@ -20,9 +20,9 @@ namespace wsr_pos
 	/// </summary>
 	public partial class OrderHeader : UserControl
 	{
-		public static uint CANVAS_HEIGHT = 50;
-		public static uint LABEL_H = 30;
-		public static uint LABEL_Y = ((CANVAS_HEIGHT - LABEL_H) / 2);
+		public static readonly uint CANVAS_HEIGHT = 50;
+		public static readonly uint LABEL_H = 30;
+		public static readonly uint LABEL_Y = ((CANVAS_HEIGHT - LABEL_H) / 2);
 
 		Label mName;
 		Label mQuantity;

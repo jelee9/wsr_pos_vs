@@ -126,7 +126,7 @@
     <Compile Include="Group\Order\Order\OrderHeader.xaml.cs">
       <DependentUpon>OrderHeader.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Group\Setting\ItemManage\SettingItemButton.xaml.cs">
+    <Compile Include="Group\Setting\Item\SettingItemButton.xaml.cs">
       <DependentUpon>SettingItemButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Group\Main\TitleBar\TitleBar.xaml.cs">
@@ -152,6 +152,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Group\Setting\Item\SettingItemCanvas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -170,6 +174,9 @@
     </Compile>
     <Compile Include="Group\Order\Menu\MenuItemButton.xaml.cs">
       <DependentUpon>MenuItemButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Group\Setting\Item\SettingItemCanvas.xaml.cs">
+      <DependentUpon>SettingItemCanvas.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -203,7 +210,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Group\Setting\ItemManage\SettingItemButton.xaml">
+    <Page Include="Group\Setting\Item\SettingItemButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

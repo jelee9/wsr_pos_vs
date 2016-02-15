@@ -19,24 +19,24 @@ namespace wsr_pos
 	/// </summary>
 	public partial class TotalCanvas : UserControl
 	{
-		public static uint WIDTH = 380;
-		public static uint HEIGHT = 400;
+		public static readonly uint WIDTH = 380;
+		public static readonly uint HEIGHT = 400;
 
-		public static uint TEXT_X = 30;
-		public static uint TEXT_WIDTH = 150;
-		public static uint TEXT_HEIGHT = 50;
+		public static readonly uint TEXT_X = 30;
+		public static readonly uint TEXT_WIDTH = 150;
+		public static readonly uint TEXT_HEIGHT = 50;
 
-		public static uint SUB_TOTAL_TEXT_Y = 50;
-		public static uint DISCOUNT_TEXT_Y = SUB_TOTAL_TEXT_Y + TEXT_HEIGHT;
-		public static uint TOTAL_TEXT_Y = DISCOUNT_TEXT_Y + TEXT_HEIGHT;
+		public static readonly uint SUB_TOTAL_TEXT_Y = 50;
+		public static readonly uint DISCOUNT_TEXT_Y = SUB_TOTAL_TEXT_Y + TEXT_HEIGHT;
+		public static readonly uint TOTAL_TEXT_Y = DISCOUNT_TEXT_Y + TEXT_HEIGHT;
 
-		public static uint VALUE_X = TEXT_X + TEXT_WIDTH;
-		public static uint VALUE_WIDTH = 170;
-		public static uint VALUE_HEIGHT = 50;
+		public static readonly uint VALUE_X = TEXT_X + TEXT_WIDTH;
+		public static readonly uint VALUE_WIDTH = 170;
+		public static readonly uint VALUE_HEIGHT = 50;
 
-		public static uint SUB_TOTAL_VALUE_Y = 50;
-		public static uint DISCOUNT_VALUE_Y = SUB_TOTAL_VALUE_Y + VALUE_HEIGHT;
-		public static uint TOTAL_VALUE_Y = DISCOUNT_VALUE_Y + VALUE_HEIGHT;
+		public static readonly uint SUB_TOTAL_VALUE_Y = 50;
+		public static readonly uint DISCOUNT_VALUE_Y = SUB_TOTAL_VALUE_Y + VALUE_HEIGHT;
+		public static readonly uint TOTAL_VALUE_Y = DISCOUNT_VALUE_Y + VALUE_HEIGHT;
 
 		Label mSubTotalText;
 		Label mDiscountText;

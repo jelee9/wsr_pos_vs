@@ -20,25 +20,25 @@ namespace wsr_pos
 	/// </summary>
 	public partial class MenuCanvas : UserControl
 	{
-		public static uint X = 0;
-		public static uint Y = 0;
-		public static uint W = 300;
-		public static uint H = 1024 - 50;
+		public static readonly uint X = 0;
+		public static readonly uint Y = 0;
+		public static readonly uint W = 300;
+		public static readonly uint H = 1024 - 50;
 
-		public static uint BUTTON_W = W;
-		public static uint BUTTON_H = 45;
+		public static readonly uint BUTTON_W = W;
+		public static readonly uint BUTTON_H = 45;
 
-		public static uint BUTTON_ICON_X = 30;
-		public static uint BUTTON_ICON_W = 25;
-		public static uint BUTTON_ICON_H = 25;
-		public static uint BUTTON_ICON_Y = ((BUTTON_H - BUTTON_ICON_H) / 2);
+		public static readonly uint BUTTON_ICON_X = 30;
+		public static readonly uint BUTTON_ICON_W = 25;
+		public static readonly uint BUTTON_ICON_H = 25;
+		public static readonly uint BUTTON_ICON_Y = ((BUTTON_H - BUTTON_ICON_H) / 2);
 
-		public static uint BUTTON_ICON_TEXT_GAP = 30;
+		public static readonly uint BUTTON_ICON_TEXT_GAP = 30;
 
-		public static uint BUTTON_TEXT_X = BUTTON_ICON_X + BUTTON_ICON_W + BUTTON_ICON_TEXT_GAP;
-		public static uint BUTTON_TEXT_Y = 0;
-		public static uint BUTTON_TEXT_W = BUTTON_W - BUTTON_TEXT_X;
-		public static uint BUTTON_TEXT_H = BUTTON_H;
+		public static readonly uint BUTTON_TEXT_X = BUTTON_ICON_X + BUTTON_ICON_W + BUTTON_ICON_TEXT_GAP;
+		public static readonly uint BUTTON_TEXT_Y = 0;
+		public static readonly uint BUTTON_TEXT_W = BUTTON_W - BUTTON_TEXT_X;
+		public static readonly uint BUTTON_TEXT_H = BUTTON_H;
 
 		private IconButton mOrder;
 		private IconButton mOrderButton;
