@@ -124,7 +124,7 @@ namespace wsr_pos
 			// Normal
 			ControlTemplate normal_button_template = new ControlTemplate(typeof(Button));
 
-			FrameworkElementFactory normal_button_shape = new FrameworkElementFactory(typeof(Ellipse));
+			FrameworkElementFactory normal_button_shape = new FrameworkElementFactory(typeof(Rectangle));
 			normal_button_shape.SetValue(Shape.FillProperty, MetrialColor.getBrush(color, 3));
 			//normal_button_shape.SetValue(Shape.StrokeProperty, Brushes.White);
 			//normal_button_shape.SetValue(Shape.StrokeThicknessProperty, 2.0);
@@ -148,8 +148,8 @@ namespace wsr_pos
 
 			ControlTemplate pressed_button_template = new ControlTemplate(typeof(Button));
 
-			FrameworkElementFactory pressed_button_shape = new FrameworkElementFactory(typeof(Ellipse));
-			pressed_button_shape.SetValue(Shape.FillProperty, MetrialColor.getBrush(MetrialColor.Name.Grey, 5));
+			FrameworkElementFactory pressed_button_shape = new FrameworkElementFactory(typeof(Rectangle));
+			pressed_button_shape.SetValue(Shape.FillProperty, MetrialColor.getBrush(color, 5));
 			//pressed_button_shape.SetValue(Shape.StrokeProperty, Brushes.White);
 			//pressed_button_shape.SetValue(Shape.StrokeThicknessProperty, 2.0);
 

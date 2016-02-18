@@ -108,8 +108,8 @@ namespace wsr_pos
 
 		private void setMode()
 		{
-			//setOrder();
-			setSettingItem();
+			setOrder();
+			//setSettingItem();
 		}
 
 		private void setOrder()
