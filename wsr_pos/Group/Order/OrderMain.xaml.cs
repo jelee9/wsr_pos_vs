@@ -10,6 +10,7 @@ namespace wsr_pos
 		private OrderItemCanvas mOrderItemCanvas;
 		private TotalCanvas mTotalCanvas;
 		private MenuItemCanvas mMenuItemCanvas;
+		private Discount mDiscount;
 
 		public OrderMain()
 		{
@@ -39,6 +40,7 @@ namespace wsr_pos
 			canvas.Children.Add(mTotalCanvas);
 
 			mOrderItemCanvas.OrderChange += mTotalCanvas.setPrice;
+			mTotalCanvas.DiscountPressed += showDiscountCanvas;
 		}
 
 		private void setMenuItemCanvas()
@@ -46,6 +48,14 @@ namespace wsr_pos
 			mMenuItemCanvas = new MenuItemCanvas(null, mOrderItemCanvas.addOrderItem);
 			mMenuItemCanvas.setPosition(0, 470, 1280, 624);
 			canvas.Children.Add(mMenuItemCanvas);
+		}
+
+		private void showDiscountCanvas()
+		{
+			mDiscount = new Discount();
+			mDiscount.DonePressed += mOrderItemCanvas.setDiscount;
+
+			mDiscount.ShowDialog();
 		}
 	}
 }

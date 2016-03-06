@@ -14,13 +14,15 @@ using System.Windows.Shapes;
 
 namespace wsr_pos
 {
+	public delegate void DonePressedEvent(OrderItem.DiscountType discount_type, uint discount_value);
+
 	/// <summary>
 	/// Interaction logic for Discount.xaml
 	/// </summary>
 	public partial class Discount : Window
 	{
-		public static readonly uint BUTTON_WIDTH = 120;
-		public static readonly uint BUTTON_HEIGHT = 70;
+		public static readonly uint BUTTON_WIDTH = 150;
+		public static readonly uint BUTTON_HEIGHT = 100;
 
 		public static readonly uint LABEL_X = 0;
 		public static readonly uint LABEL_Y = 0;
@@ -50,8 +52,8 @@ namespace wsr_pos
 		{
 			InitializeComponent();
 
-			//mDiscountType = OrderItem.DiscountType.Price;
-			mDiscountType = OrderItem.DiscountType.Percent;
+			mDiscountType = OrderItem.DiscountType.Price;
+			//mDiscountType = OrderItem.DiscountType.Percent;
 			mValue = 0;
 
 			setLabel();
@@ -117,7 +119,7 @@ namespace wsr_pos
 			setPosition(mLabel, LABEL_X, LABEL_Y, LABEL_WIDTH, LABEL_HEIGHT);
 			mLabel.Background = MetrialColor.getBrush(MetrialColor.Name.BlueGrey);
 			mLabel.Foreground = MetrialColor.getBrush(MetrialColor.Name.White);
-			mLabel.FontSize = 30;
+			mLabel.FontSize = 45;
 			mLabel.HorizontalContentAlignment = HorizontalAlignment.Right;
 			mLabel.VerticalContentAlignment = VerticalAlignment.Center;
 			mLabel.Content = "0";
@@ -128,7 +130,7 @@ namespace wsr_pos
 		{
 			m1Button = new Button();
 			setPosition(m1Button, 0, (LABEL_Y + LABEL_HEIGHT) + 0, BUTTON_WIDTH, BUTTON_HEIGHT);
-			m1Button.FontSize = 20;
+			m1Button.FontSize = 30;
 			m1Button.Content = "1";
 			setColor(m1Button, MetrialColor.Name.Cyan);
 			m1Button.Click += onClick;
@@ -136,7 +138,7 @@ namespace wsr_pos
 
 			m2Button = new Button();
 			setPosition(m2Button, BUTTON_WIDTH, (LABEL_Y + LABEL_HEIGHT) + 0, BUTTON_WIDTH, BUTTON_HEIGHT);
-			m2Button.FontSize = 20;
+			m2Button.FontSize = 30;
 			m2Button.Content = "2";
 			setColor(m2Button, MetrialColor.Name.Cyan);
 			m2Button.Click += onClick;
@@ -144,7 +146,7 @@ namespace wsr_pos
 
 			m3Button = new Button();
 			setPosition(m3Button, BUTTON_WIDTH * 2, (LABEL_Y + LABEL_HEIGHT) + 0, BUTTON_WIDTH, BUTTON_HEIGHT);
-			m3Button.FontSize = 20;
+			m3Button.FontSize = 30;
 			m3Button.Content = "3";
 			setColor(m3Button, MetrialColor.Name.Cyan);
 			m3Button.Click += onClick;
@@ -152,7 +154,7 @@ namespace wsr_pos
 
 			m4Button = new Button();
 			setPosition(m4Button, 0, (LABEL_Y + LABEL_HEIGHT) + BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT);
-			m4Button.FontSize = 20;
+			m4Button.FontSize = 30;
 			m4Button.Content = "4";
 			setColor(m4Button, MetrialColor.Name.Cyan);
 			m4Button.Click += onClick;
@@ -160,7 +162,7 @@ namespace wsr_pos
 
 			m5Button = new Button();
 			setPosition(m5Button, BUTTON_WIDTH, (LABEL_Y + LABEL_HEIGHT) + BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT);
-			m5Button.FontSize = 20;
+			m5Button.FontSize = 30;
 			m5Button.Content = "5";
 			setColor(m5Button, MetrialColor.Name.Cyan);
 			m5Button.Click += onClick;
@@ -168,7 +170,7 @@ namespace wsr_pos
 
 			m6Button = new Button();
 			setPosition(m6Button, BUTTON_WIDTH * 2, (LABEL_Y + LABEL_HEIGHT) + BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT);
-			m6Button.FontSize = 20;
+			m6Button.FontSize = 30;
 			m6Button.Content = "6";
 			setColor(m6Button, MetrialColor.Name.Cyan);
 			m6Button.Click += onClick;
@@ -176,7 +178,7 @@ namespace wsr_pos
 
 			m7Button = new Button();
 			setPosition(m7Button, 0, (LABEL_Y + LABEL_HEIGHT) + BUTTON_HEIGHT * 2, BUTTON_WIDTH, BUTTON_HEIGHT);
-			m7Button.FontSize = 20;
+			m7Button.FontSize = 30;
 			m7Button.Content = "7";
 			setColor(m7Button, MetrialColor.Name.Cyan);
 			m7Button.Click += onClick;
@@ -184,7 +186,7 @@ namespace wsr_pos
 
 			m8Button = new Button();
 			setPosition(m8Button, BUTTON_WIDTH, (LABEL_Y + LABEL_HEIGHT) + BUTTON_HEIGHT * 2, BUTTON_WIDTH, BUTTON_HEIGHT);
-			m8Button.FontSize = 20;
+			m8Button.FontSize = 30;
 			m8Button.Content = "8";
 			setColor(m8Button, MetrialColor.Name.Cyan);
 			m8Button.Click += onClick;
@@ -192,7 +194,7 @@ namespace wsr_pos
 
 			m9Button = new Button();
 			setPosition(m9Button, BUTTON_WIDTH * 2, (LABEL_Y + LABEL_HEIGHT) + BUTTON_HEIGHT * 2, BUTTON_WIDTH, BUTTON_HEIGHT);
-			m9Button.FontSize = 20;
+			m9Button.FontSize = 30;
 			m9Button.Content = "9";
 			setColor(m9Button, MetrialColor.Name.Cyan);
 			m9Button.Click += onClick;
@@ -200,7 +202,7 @@ namespace wsr_pos
 
 			m0Button = new Button();
 			setPosition(m0Button, 0, (LABEL_Y + LABEL_HEIGHT) + BUTTON_HEIGHT * 3, BUTTON_WIDTH, BUTTON_HEIGHT);
-			m0Button.FontSize = 20;
+			m0Button.FontSize = 30;
 			m0Button.Content = "0";
 			setColor(m0Button, MetrialColor.Name.Cyan);
 			m0Button.Click += onClick;
@@ -208,7 +210,7 @@ namespace wsr_pos
 
 			m00Button = new Button();
 			setPosition(m00Button, BUTTON_WIDTH, (LABEL_Y + LABEL_HEIGHT) + BUTTON_HEIGHT * 3, BUTTON_WIDTH * 2, BUTTON_HEIGHT);
-			m00Button.FontSize = 20;
+			m00Button.FontSize = 30;
 			m00Button.Content = "00";
 			setColor(m00Button, MetrialColor.Name.Cyan);
 			m00Button.Click += onClick;
@@ -216,16 +218,18 @@ namespace wsr_pos
 
 			mCancelButton = new Button();
 			setPosition(mCancelButton, 0, (LABEL_Y + LABEL_HEIGHT) + BUTTON_HEIGHT * 4, ((BUTTON_WIDTH * 3) / 2), BUTTON_HEIGHT);
-			mCancelButton.FontSize = 20;
+			mCancelButton.FontSize = 30;
 			mCancelButton.Content = "취소";
 			setColor(mCancelButton, MetrialColor.Name.Red);
+			mCancelButton.Click += onCancel;
 			canvas.Children.Add(mCancelButton);
 
 			mDoneButton = new Button();
 			setPosition(mDoneButton, ((BUTTON_WIDTH * 3) / 2), (LABEL_Y + LABEL_HEIGHT) + BUTTON_HEIGHT * 4, ((BUTTON_WIDTH * 3) / 2), BUTTON_HEIGHT);
-			mDoneButton.FontSize = 20;
+			mDoneButton.FontSize = 30;
 			mDoneButton.Content = "적용";
 			setColor(mDoneButton, MetrialColor.Name.Blue);
+			mDoneButton.Click += onDone;
 			canvas.Children.Add(mDoneButton);
 		}
 
@@ -291,7 +295,26 @@ namespace wsr_pos
 				{
 					mValue = 10000000;
 				}
+
+				mLabel.Content = string.Format("{0:N0}", mValue);
 			}
+		}
+
+		private void onCancel(object sender, RoutedEventArgs e)
+		{
+			Close();
+		}
+
+		public event DonePressedEvent DonePressed;
+
+		private void onDone(object sender, RoutedEventArgs e)
+		{
+			if(DonePressed != null)
+			{
+				DonePressed(mDiscountType, mValue);
+			}
+
+			Close();
 		}
 	}
 }

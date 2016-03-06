@@ -14,6 +14,8 @@ using System.Windows.Shapes;
 
 namespace wsr_pos
 {
+	public delegate void DiscountPressedEvent();
+
 	/// <summary>
 	/// Interaction logic for TotalCanvas.xaml
 	/// </summary>
@@ -55,6 +57,8 @@ namespace wsr_pos
 		RectButton mSaveButton;
 		RectButton mCancelButton;
 		RectButton mPaymentButton;
+
+		Discount mDiscount;
 
 		public TotalCanvas()
 		{
@@ -161,6 +165,7 @@ namespace wsr_pos
 			Canvas.SetLeft(mDiscountButton, 0);
 			Canvas.SetTop(mDiscountButton, (HEIGHT - (BUTTON_HEIGHT * 2) - 1));
 			canvas.Children.Add(mDiscountButton);
+			mDiscountButton.Click += showDiscountCanvas;
 
 			mSaveButton = new RectButton(BUTTON_WIDTH - 1, BUTTON_HEIGHT);
 			mSaveButton.setText("저  장");
@@ -192,6 +197,16 @@ namespace wsr_pos
 			mSubTotalPrice.Content = string.Format("{0:N0}", sub_total_price);
 			mDiscountPrice.Content = string.Format("{0:N0}", discount_price);
 			mTotalPrice.Content = string.Format("{0:N0}", total_price);
+		}
+
+		public event DiscountPressedEvent DiscountPressed;
+
+		private void showDiscountCanvas()
+		{
+			if(DiscountPressed != null)
+			{
+				DiscountPressed();
+			}
 		}
 	}
 }

@@ -175,5 +175,45 @@ namespace wsr_pos
 				OrderChange(sub_total_price, discount_price, total_price);
 			}
 		}
+
+		public void setDiscount(OrderItem.DiscountType discount_type, uint value)
+		{
+			if(discount_type == OrderItem.DiscountType.Price)
+			{
+				setDiscountPrice(value);
+			}
+		}
+
+		public void setDiscountPrice(uint discount_price)
+		{
+			uint sub_total_price = 0;
+
+			foreach (Order order in mOrderList)
+			{
+				sub_total_price += order.item.getSubTotalPrice();
+			}
+
+			uint total_discount_price = 0;
+
+			for (int i = 0; i < mOrderList.Count; i++)
+			{
+				OrderItem order_item = mOrderList[i].item;
+
+				if (i != mOrderList.Count - 1)
+				{
+					uint sub_discount_price = (uint)(order_item.getSubTotalPrice() * (((uint)((float)discount_price / sub_total_price * 100)) / (float)100.0));
+					order_item.setDiscountPrice(sub_discount_price);
+					total_discount_price = total_discount_price + sub_discount_price;
+				}
+				else
+				{
+					order_item.setDiscountPrice(discount_price - total_discount_price);
+				}
+
+				mOrderList[i].button.refreshOrder(order_item);
+			}
+
+			onOrderChange();
+		}
 	}
 }
