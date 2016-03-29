@@ -10,8 +10,9 @@ namespace wsr_pos
 		private OrderItemCanvas mOrderItemCanvas;
 		private TotalCanvas mTotalCanvas;
 		private MenuItemCanvas mMenuItemCanvas;
+		private DiscountOption mDiscountOption;
 		private Discount mDiscount;
-
+		
 		public OrderMain()
 		{
 			InitializeComponent();
@@ -40,7 +41,7 @@ namespace wsr_pos
 			canvas.Children.Add(mTotalCanvas);
 
 			mOrderItemCanvas.OrderChange += mTotalCanvas.setPrice;
-			mTotalCanvas.DiscountPressed += showDiscountCanvas;
+			mTotalCanvas.DiscountPressed += showDIscountOptionCanvas;
 		}
 
 		private void setMenuItemCanvas()
@@ -50,12 +51,51 @@ namespace wsr_pos
 			canvas.Children.Add(mMenuItemCanvas);
 		}
 
-		private void showDiscountCanvas()
+		private void showDIscountOptionCanvas()
 		{
-			mDiscount = new Discount();
-			mDiscount.DonePressed += mOrderItemCanvas.setDiscount;
+			mDiscountOption = new DiscountOption();
+			mDiscountOption.DiscountSelected += showDiscountCanvas;
 
-			mDiscount.ShowDialog();
+			mDiscountOption.ShowDialog();
+		}
+
+		private void showDiscountCanvas(OrderItem.DiscountType discount_type)
+		{
+			switch(discount_type)
+			{
+				case OrderItem.DiscountType.Percent:
+				{
+					mDiscount = new Discount(OrderItem.DiscountType.Percent);
+					mDiscount.DonePressed += mOrderItemCanvas.setDiscount;
+
+					mDiscount.ShowDialog();
+					break;
+				}
+				case OrderItem.DiscountType.Price:
+				{
+					mDiscount = new Discount(OrderItem.DiscountType.Price);
+					mDiscount.DonePressed += mOrderItemCanvas.setDiscount;
+
+					mDiscount.ShowDialog();
+					break;
+				}
+				case OrderItem.DiscountType.Pension:
+				{
+					break;
+				}
+				case OrderItem.DiscountType.Enuri:
+				{
+					mDiscount = new Discount(OrderItem.DiscountType.Enuri);
+					mDiscount.DonePressed += mOrderItemCanvas.setDiscount;
+
+					mDiscount.ShowDialog();
+					break;
+				}
+				default:
+				{
+					break;
+				}
+			}
 		}
 	}
 }

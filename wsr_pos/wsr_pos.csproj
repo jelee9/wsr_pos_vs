@@ -123,6 +123,9 @@
     <Compile Include="Group\Main\Menu\MenuCanvas.xaml.cs">
       <DependentUpon>MenuCanvas.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Group\Order\Discount\DiscountOption.xaml.cs">
+      <DependentUpon>DiscountOption.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Group\Order\Order\OrderHeader.xaml.cs">
       <DependentUpon>OrderHeader.xaml</DependentUpon>
     </Compile>
@@ -145,6 +148,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Group\Order\Discount\Discount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Group\Order\Discount\DiscountOption.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

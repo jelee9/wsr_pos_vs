@@ -13,7 +13,8 @@ namespace wsr_pos
 			None,
 			Percent,
 			Price,
-			Custom,
+			Pension,
+			Enuri,
 		};
 
 		private Item mItem;
@@ -185,7 +186,20 @@ namespace wsr_pos
 
 						break;
 					}
-				case DiscountType.Custom:
+				case DiscountType.Pension:
+					{
+						if (mDiscountPrice != 0)
+						{
+							mDiscountPercent = (uint)((float)mDiscountPrice / (float)mSubTotalPrice * 100);
+						}
+						else
+						{
+							mDiscountPercent = 0;
+						}
+
+						break;
+					}
+				case DiscountType.Enuri:
 					{
 						break;
 					}
