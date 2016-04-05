@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 namespace wsr_pos
 {
 	public delegate void DiscountPressedEvent();
+	public delegate void CancelPressedEvent();
 
 	/// <summary>
 	/// Interaction logic for TotalCanvas.xaml
@@ -182,6 +183,7 @@ namespace wsr_pos
 			Canvas.SetLeft(mCancelButton, 0);
 			Canvas.SetTop(mCancelButton, (HEIGHT - (BUTTON_HEIGHT)));
 			canvas.Children.Add(mCancelButton);
+			mCancelButton.Click += cancelOrder;
 
 			mPaymentButton = new RectButton(BUTTON_WIDTH - 1, BUTTON_HEIGHT);
 			mPaymentButton.setText("계  산");
@@ -200,12 +202,21 @@ namespace wsr_pos
 		}
 
 		public event DiscountPressedEvent DiscountPressed;
+		public event CancelPressedEvent CancelPressed;
 
 		private void showDiscountCanvas()
 		{
 			if(DiscountPressed != null)
 			{
 				DiscountPressed();
+			}
+		}
+
+		private void cancelOrder()
+		{
+			if(CancelPressed != null)
+			{
+				CancelPressed();
 			}
 		}
 	}

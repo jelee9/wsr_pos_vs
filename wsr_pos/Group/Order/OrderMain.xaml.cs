@@ -42,6 +42,7 @@ namespace wsr_pos
 
 			mOrderItemCanvas.OrderChange += mTotalCanvas.setPrice;
 			mTotalCanvas.DiscountPressed += showDIscountOptionCanvas;
+			mTotalCanvas.CancelPressed += mOrderItemCanvas.deleteAllOrderItem;
 		}
 
 		private void setMenuItemCanvas()

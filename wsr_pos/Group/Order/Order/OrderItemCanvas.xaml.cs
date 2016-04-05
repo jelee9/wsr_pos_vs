@@ -155,6 +155,20 @@ namespace wsr_pos
 			onOrderChange();
 		}
 
+		public void deleteAllOrderItem()
+		{
+			for(;mOrderList.Count > 0;)
+			{
+				Order order = mOrderList[0];
+				mOrderItemButtonStackPanel.Children.Remove(order.button);
+				mOrderList.Remove(order);
+
+				Debug.Write("Delete : " + order.item.getItem().getName());
+			}
+
+			onOrderChange();
+		}
+
 		public event OrderChangeEvent OrderChange;
 
 		public void onOrderChange()

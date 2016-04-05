@@ -27,8 +27,8 @@ namespace wsr_pos
 
 		public static readonly uint LABEL_X = 0;
 		public static readonly uint LABEL_Y = 0;
-		public static readonly uint LABEL_WIDTH = (BUTTON_WIDTH * 3);
-		public static readonly uint LABEL_HEIGHT = BUTTON_HEIGHT;
+		public static readonly uint LABEL_WIDTH = (BUTTON_WIDTH * 5);
+		public static readonly uint LABEL_HEIGHT = 50;
 
 		private Label mLabel;
 
@@ -36,10 +36,14 @@ namespace wsr_pos
 		private Button m2Button;
 		private Button m3Button;
 		private Button m4Button;
+		private Button m5Button;
 
 		public DiscountOption()
 		{
 			InitializeComponent();
+
+			Width = BUTTON_WIDTH * 5;
+			Height = LABEL_HEIGHT + BUTTON_HEIGHT;
 
 			setLabel();
 			setButton();
@@ -104,10 +108,10 @@ namespace wsr_pos
 			setPosition(mLabel, LABEL_X, LABEL_Y, LABEL_WIDTH, LABEL_HEIGHT);
 			mLabel.Background = MetrialColor.getBrush(MetrialColor.Name.BlueGrey);
 			mLabel.Foreground = MetrialColor.getBrush(MetrialColor.Name.White);
-			mLabel.FontSize = 45;
-			mLabel.HorizontalContentAlignment = HorizontalAlignment.Right;
+			mLabel.FontSize = 25;
+			mLabel.HorizontalContentAlignment = HorizontalAlignment.Center;
 			mLabel.VerticalContentAlignment = VerticalAlignment.Center;
-			mLabel.Content = "0";
+			mLabel.Content = "할인 옵션";
 			mLabel.Padding = new Thickness(0, 0, 50, 0);
 			canvas.Children.Add(mLabel);
 		}
@@ -116,7 +120,7 @@ namespace wsr_pos
 		{
 			m1Button = new Button();
 			setPosition(m1Button, 0, (LABEL_Y + LABEL_HEIGHT) + 0, BUTTON_WIDTH, BUTTON_HEIGHT);
-			m1Button.FontSize = 30;
+			m1Button.FontSize = 25;
 			m1Button.Content = "퍼센트";
 			setColor(m1Button, MetrialColor.Name.Cyan);
 			m1Button.Click += onClick;
@@ -124,7 +128,7 @@ namespace wsr_pos
 
 			m2Button = new Button();
 			setPosition(m2Button, BUTTON_WIDTH, (LABEL_Y + LABEL_HEIGHT) + 0, BUTTON_WIDTH, BUTTON_HEIGHT);
-			m2Button.FontSize = 30;
+			m2Button.FontSize = 25;
 			m2Button.Content = "가격";
 			setColor(m2Button, MetrialColor.Name.Cyan);
 			m2Button.Click += onClick;
@@ -132,7 +136,7 @@ namespace wsr_pos
 
 			m3Button = new Button();
 			setPosition(m3Button, BUTTON_WIDTH * 2, (LABEL_Y + LABEL_HEIGHT) + 0, BUTTON_WIDTH, BUTTON_HEIGHT);
-			m3Button.FontSize = 30;
+			m3Button.FontSize = 25;
 			m3Button.Content = "펜션";
 			setColor(m3Button, MetrialColor.Name.Cyan);
 			m3Button.Click += onClick;
@@ -140,11 +144,19 @@ namespace wsr_pos
 
 			m4Button = new Button();
 			setPosition(m4Button, BUTTON_WIDTH * 3, (LABEL_Y + LABEL_HEIGHT) + 0, BUTTON_WIDTH, BUTTON_HEIGHT);
-			m4Button.FontSize = 30;
+			m4Button.FontSize = 25;
 			m4Button.Content = "에누리";
 			setColor(m4Button, MetrialColor.Name.Cyan);
 			m4Button.Click += onClick;
 			canvas.Children.Add(m4Button);
+
+			m5Button = new Button();
+			setPosition(m5Button, BUTTON_WIDTH * 4, (LABEL_Y + LABEL_HEIGHT) + 0, BUTTON_WIDTH, BUTTON_HEIGHT);
+			m5Button.FontSize = 25;
+			m5Button.Content = "취소";
+			setColor(m5Button, MetrialColor.Name.Red);
+			m5Button.Click += onClick;
+			canvas.Children.Add(m5Button);
 		}
 
 		public void onClick(object sender, RoutedEventArgs e)
@@ -168,6 +180,10 @@ namespace wsr_pos
 			{
 				Close();
 				onDiscountSelected(OrderItem.DiscountType.Enuri);
+			}
+			else if (sender == m5Button)
+			{
+				Close();
 			}
 		}
 

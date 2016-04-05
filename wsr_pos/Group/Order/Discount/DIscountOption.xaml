@@ -6,10 +6,6 @@
              xmlns:local="clr-namespace:wsr_pos"
              mc:Ignorable="d" 
 			Title="DiscountOption" 
-			Top="0"
-			Left="0"
-			Width="450"
-			Height="300"
 			WindowStyle="None"
 			ResizeMode="NoResize">
 	<Canvas Name="canvas"/>
