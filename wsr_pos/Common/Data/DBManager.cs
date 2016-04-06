@@ -369,23 +369,23 @@ namespace wsr_pos
 
 		public void setTestItemData()
 		{
-			Item item01 = new Item(1, 01, "수상스키", "", 25000, false, false, false, false);
-			Item item02 = new Item(1, 02, "수상스키(초보)", "", 60000, false, false, false, false);
-			Item item03 = new Item(1, 03, "웨이크보드", "", 25000, false, false, false, false);
-			Item item04 = new Item(1, 04, "웨이크보드(초보)", "", 60000, false, false, false, false);
+			Item item01 = new Item(1, 01, "수상스키", "", 25000, true, false, false, false);
+			Item item02 = new Item(1, 02, "수상스키(초보)", "", 60000, true, false, false, false);
+			Item item03 = new Item(1, 03, "웨이크보드", "", 25000, true, false, false, false);
+			Item item04 = new Item(1, 04, "웨이크보드(초보)", "", 60000, true, false, false, false);
 
-			Item item05 = new Item(2, 05, "바나나보트", "", 20000, false, false, false, false);
-			Item item06 = new Item(2, 06, "밴드 웨곤", "", 20000, false, false, false, false);
-			Item item07 = new Item(2, 07, "더블땅콩", "", 25000, false, false, false, false);
-			Item item08 = new Item(2, 08, "디스코팡팡", "", 25000, false, false, false, false);
-			Item item09 = new Item(2, 09, "뉴 디스코팡팡", "", 25000, false, false, false, false);
-			Item item10 = new Item(2, 10, "헥사곤", "", 25000, false, false, false, false);
-			Item item11 = new Item(2, 11, "마블", "", 25000, false, false, false, false);
-			Item item12 = new Item(2, 12, "날으는 바나나", "", 25000, false, false, false, false);
+			Item item05 = new Item(2, 05, "바나나보트", "", 20000, true, false, false, false);
+			Item item06 = new Item(2, 06, "밴드 웨곤", "", 20000, true, false, false, false);
+			Item item07 = new Item(2, 07, "더블땅콩", "", 25000, true, false, false, false);
+			Item item08 = new Item(2, 08, "디스코팡팡", "", 25000, true, false, false, false);
+			Item item09 = new Item(2, 09, "뉴 디스코팡팡", "", 25000, true, false, false, false);
+			Item item10 = new Item(2, 10, "헥사곤", "", 25000, true, false, false, false);
+			Item item11 = new Item(2, 11, "마블", "", 25000, true, false, false, false);
+			Item item12 = new Item(2, 12, "날으는 바나나", "", 25000, true, false, false, false);
 
-			Item item13 = new Item(2, 13, "보팅 (A)", "바나나보트/밴드 웨곤/뉴 디스코팡팡/날으는 바나나", 50000, false, false, false, false);
-			Item item14 = new Item(2, 14, "보팅 (B)", "", 100000, false, false, false, false);
-			Item item15 = new Item(2, 15, "보팅 (C)", "수상스키(초보)/날으는 바나나/날으는 바나나", 150000, false, false, false, false);
+			Item item13 = new Item(2, 13, "보팅 (A)", "바나나보트/밴드 웨곤/뉴 디스코팡팡/날으는 바나나", 50000, true, false, false, false);
+			Item item14 = new Item(2, 14, "보팅 (B)", "", 100000, true, false, false, false);
+			Item item15 = new Item(2, 15, "보팅 (C)", "수상스키(초보)/날으는 바나나/날으는 바나나", 150000, true, false, false, false);
 
 
 			Item item16 = new Item(3, 16, "물놀이 패키지 1", "마블/바나나/밴드웨곤 2종", 28000, false, false, false, false);

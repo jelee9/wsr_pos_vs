@@ -289,7 +289,7 @@ namespace wsr_pos
 
 				mLabel.Content = string.Format("{0:N0}", mValue) + " %";
 			}
-			else if(mDiscountType == OrderItem.DiscountType.Price)
+			else if(mDiscountType == OrderItem.DiscountType.Price || mDiscountType == OrderItem.DiscountType.Enuri)
 			{
 				if(mValue > 10000000)
 				{

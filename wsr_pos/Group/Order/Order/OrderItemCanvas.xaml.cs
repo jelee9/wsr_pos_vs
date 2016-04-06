@@ -196,9 +196,75 @@ namespace wsr_pos
 			{
 				setDiscountPrice(value);
 			}
+			else if(discount_type == OrderItem.DiscountType.Percent)
+			{
+				setDiscountPercent(value);
+			}
+			else if (discount_type == OrderItem.DiscountType.Enuri)
+			{
+				setEnuriPrice(value);
+			}
 		}
 
 		public void setDiscountPrice(uint discount_price)
+		{
+			uint sub_total_price = 0;
+			uint discounted_item_count = 0;
+
+			foreach (Order order in mOrderList)
+			{
+				if (order.item.getItem().getDiscount() == true)
+				{
+					discounted_item_count++;
+					sub_total_price += order.item.getSubTotalPrice();
+				}
+			}
+
+			uint total_discount_price = 0;
+
+			foreach (Order order in mOrderList)
+			{
+				OrderItem order_item = order.item;
+
+				if (order.item.getItem().getDiscount() == true)
+				{
+					discounted_item_count--;
+					if (discounted_item_count != 0)
+					{
+						uint sub_discount_price = (uint)(order_item.getSubTotalPrice() * (((uint)((float)discount_price / sub_total_price * 100)) / (float)100.0));
+						order_item.setDiscountPrice(sub_discount_price);
+						total_discount_price = total_discount_price + sub_discount_price;
+					}
+					else
+					{
+						order_item.setDiscountPrice(discount_price - total_discount_price);
+					}
+
+					order.button.refreshOrder(order_item);
+				}
+			}
+
+			onOrderChange();
+		}
+
+		public void setDiscountPercent(uint discount_percent)
+		{
+			for (int i = 0; i < mOrderList.Count; i++)
+			{
+				OrderItem order_item = mOrderList[i].item;
+
+				if (order_item.getItem().getDiscount() == true)
+				{
+					uint discount_price = (uint)(((double)order_item.getSubTotalPrice()) * (discount_percent / 100.0));
+					order_item.setDiscountPrice(discount_price);
+					mOrderList[i].button.refreshOrder(order_item);
+				}
+			}
+
+			onOrderChange();
+		}
+
+		public void setEnuriPrice(uint enuri_price)
 		{
 			uint sub_total_price = 0;
 
@@ -207,24 +273,24 @@ namespace wsr_pos
 				sub_total_price += order.item.getSubTotalPrice();
 			}
 
-			uint total_discount_price = 0;
+			uint total_enuri_price = 0;
 
-			for (int i = 0; i < mOrderList.Count; i++)
+			for(int i = 0; i < mOrderList.Count; i++)
 			{
-				OrderItem order_item = mOrderList[i].item;
+				Order order = mOrderList[i];
 
-				if (i != mOrderList.Count - 1)
+				if (i < mOrderList.Count - 1)
 				{
-					uint sub_discount_price = (uint)(order_item.getSubTotalPrice() * (((uint)((float)discount_price / sub_total_price * 100)) / (float)100.0));
-					order_item.setDiscountPrice(sub_discount_price);
-					total_discount_price = total_discount_price + sub_discount_price;
+					uint sub_enuri_price = (uint)(order.item.getSubTotalPrice() * (((uint)((float)enuri_price / sub_total_price * 100)) / (float)100.0));
+					order.item.setEnuriPrice(sub_enuri_price);
+					total_enuri_price = total_enuri_price + sub_enuri_price;
 				}
 				else
 				{
-					order_item.setDiscountPrice(discount_price - total_discount_price);
+					order.item.setEnuriPrice(enuri_price - total_enuri_price);
 				}
 
-				mOrderList[i].button.refreshOrder(order_item);
+				order.button.refreshOrder(order.item);
 			}
 
 			onOrderChange();
