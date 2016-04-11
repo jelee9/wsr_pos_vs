@@ -84,6 +84,14 @@ namespace wsr_pos
 
 			string order_summary_query = @"CREATE TABLE IF NOT EXISTS order_summary
 									(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE,
+									sub_total_price INTEGER,
+									discount_price INTEGER,
+									discount_percent INTEGER,
+									enuri_price INTEGER,
+									enuri_percent INTEGER,
+									total_price INTEGER,
+									total_percent INTEGER,
+									payment_method INTEGER,
 									create_time INTEGER)";
 			SQLiteCommand order_summary_cmd = new SQLiteCommand(order_summary_query, mConnection);
 			order_summary_cmd.ExecuteNonQuery();
@@ -99,7 +107,8 @@ namespace wsr_pos
 											discount_percent INTEGER,
 											enuri_price INTEGER,
 											enuri_percent INTEGER,
-											total_price INTEGER)";
+											total_price INTEGER, 
+											total_percent INTEGER)";
 			SQLiteCommand order_item_cmd = new SQLiteCommand(order_item_query, mConnection);
 			order_item_cmd.ExecuteNonQuery();
 

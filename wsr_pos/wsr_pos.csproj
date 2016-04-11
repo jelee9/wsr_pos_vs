@@ -117,6 +117,7 @@
     <Compile Include="Common\Data\Category.cs" />
     <Compile Include="Common\Data\DBManager.cs" />
     <Compile Include="Common\Data\ItemLayout.cs" />
+    <Compile Include="Common\Data\Order.cs" />
     <Compile Include="Common\Widget\IconButton.xaml.cs">
       <DependentUpon>IconButton.xaml</DependentUpon>
     </Compile>

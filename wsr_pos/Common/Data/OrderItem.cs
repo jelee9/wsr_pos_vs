@@ -18,15 +18,19 @@ namespace wsr_pos
 		};
 
 		private Item mItem;
+
 		private uint mQuantity;
 		private uint mSubTotalPrice;
-		private DiscountType mDiscountType;
 
+		private DiscountType mDiscountType;
 		private uint mDiscountPrice;
 		private uint mDiscountPercent;
+
 		private uint mEnuriPrice;
 		private uint mEnuriPercent;
+
 		private uint mTotalPrice;
+		private uint mTotalPercent;
 
 		public OrderItem(Item item)
 		{
@@ -39,6 +43,7 @@ namespace wsr_pos
 			mEnuriPrice = 0;
 			mEnuriPercent = 0;
 			mTotalPrice = 0;
+			mTotalPercent = 0;
 
 			recalculation();
 		}
@@ -213,6 +218,7 @@ namespace wsr_pos
 
 			mEnuriPercent = (uint)((float)mEnuriPrice / (float)mSubTotalPrice * 100);
 			mTotalPrice = mSubTotalPrice - mDiscountPrice - mEnuriPrice;
+			mTotalPercent = (uint)((float)mTotalPrice / (float)mSubTotalPrice * 100);
 		}
 	}
 }
