@@ -12,6 +12,8 @@ namespace wsr_pos
 		private MenuItemCanvas mMenuItemCanvas;
 		private DiscountOption mDiscountOption;
 		private Discount mDiscount;
+		private PaymentMethod mPaymentMethod;
+		private CheckOut mCheckOut;
 		
 		public OrderMain()
 		{
@@ -41,8 +43,9 @@ namespace wsr_pos
 			canvas.Children.Add(mTotalCanvas);
 
 			mOrderItemCanvas.OrderChange += mTotalCanvas.setPrice;
-			mTotalCanvas.DiscountPressed += showDIscountOptionCanvas;
+			mTotalCanvas.DiscountPressed += showDiscountOptionCanvas;
 			mTotalCanvas.CancelPressed += mOrderItemCanvas.deleteAllOrderItem;
+			mTotalCanvas.CheckOutPressed += showPaymentMethodCanvas;
 		}
 
 		private void setMenuItemCanvas()
@@ -52,7 +55,7 @@ namespace wsr_pos
 			canvas.Children.Add(mMenuItemCanvas);
 		}
 
-		private void showDIscountOptionCanvas()
+		private void showDiscountOptionCanvas()
 		{
 			mDiscountOption = new DiscountOption();
 			mDiscountOption.DiscountSelected += showDiscountCanvas;
@@ -97,6 +100,20 @@ namespace wsr_pos
 					break;
 				}
 			}
+		}
+
+		private void showPaymentMethodCanvas()
+		{
+			mPaymentMethod = new PaymentMethod();
+			mPaymentMethod.PaymentMethodSelected += showCheckOutCanvas;
+
+			mPaymentMethod.ShowDialog();
+		}
+
+		private void showCheckOutCanvas(Order.PaymentMethod payment_method)
+		{
+			mCheckOut = new CheckOut();
+			mCheckOut.ShowDialog();
 		}
 	}
 }

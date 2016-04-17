@@ -16,6 +16,7 @@ namespace wsr_pos
 {
 	public delegate void DiscountPressedEvent();
 	public delegate void CancelPressedEvent();
+	public delegate void CheckOutPressedEvent();
 
 	/// <summary>
 	/// Interaction logic for TotalCanvas.xaml
@@ -57,7 +58,7 @@ namespace wsr_pos
 		RectButton mDiscountButton;
 		RectButton mSaveButton;
 		RectButton mCancelButton;
-		RectButton mPaymentButton;
+		RectButton mCheckOutButton;
 
 		Discount mDiscount;
 
@@ -185,13 +186,14 @@ namespace wsr_pos
 			canvas.Children.Add(mCancelButton);
 			mCancelButton.Click += cancelOrder;
 
-			mPaymentButton = new RectButton(BUTTON_WIDTH - 1, BUTTON_HEIGHT);
-			mPaymentButton.setText("계  산");
-			mPaymentButton.FontSize = 25;
-			mPaymentButton.setBackgroundColor(MetrialColor.Name.Blue);
-			Canvas.SetLeft(mPaymentButton, BUTTON_WIDTH + 1);
-			Canvas.SetTop(mPaymentButton, (HEIGHT - (BUTTON_HEIGHT)));
-			canvas.Children.Add(mPaymentButton);
+			mCheckOutButton = new RectButton(BUTTON_WIDTH - 1, BUTTON_HEIGHT);
+			mCheckOutButton.setText("계  산");
+			mCheckOutButton.FontSize = 25;
+			mCheckOutButton.setBackgroundColor(MetrialColor.Name.Blue);
+			Canvas.SetLeft(mCheckOutButton, BUTTON_WIDTH + 1);
+			Canvas.SetTop(mCheckOutButton, (HEIGHT - (BUTTON_HEIGHT)));
+			canvas.Children.Add(mCheckOutButton);
+			mCheckOutButton.Click += showCheckOutCanvas;
 		}
 
 		public void setPrice(uint sub_total_price, uint discount_price, uint total_price)
@@ -203,6 +205,7 @@ namespace wsr_pos
 
 		public event DiscountPressedEvent DiscountPressed;
 		public event CancelPressedEvent CancelPressed;
+		public event CheckOutPressedEvent CheckOutPressed;
 
 		private void showDiscountCanvas()
 		{
@@ -217,6 +220,14 @@ namespace wsr_pos
 			if(CancelPressed != null)
 			{
 				CancelPressed();
+			}
+		}
+
+		private void showCheckOutCanvas()
+		{
+			if (CheckOutPressed != null)
+			{
+				CheckOutPressed();
 			}
 		}
 	}

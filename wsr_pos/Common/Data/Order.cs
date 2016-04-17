@@ -12,7 +12,7 @@ namespace wsr_pos
 		{
 			Cash,
 			Card,
-			AccountTransfer,
+			Transfer,
 		};
 
 		private uint mId;

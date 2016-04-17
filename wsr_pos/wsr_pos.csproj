@@ -124,6 +124,12 @@
     <Compile Include="Group\Main\Menu\MenuCanvas.xaml.cs">
       <DependentUpon>MenuCanvas.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Group\Order\CheckOut\CheckOut.xaml.cs">
+      <DependentUpon>CheckOut.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Group\Order\CheckOut\PaymentMethod.xaml.cs">
+      <DependentUpon>PaymentMethod.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Group\Order\Discount\DiscountOption.xaml.cs">
       <DependentUpon>DiscountOption.xaml</DependentUpon>
     </Compile>
@@ -145,6 +151,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Group\Main\Menu\MenuCanvas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Group\Order\CheckOut\CheckOut.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Group\Order\CheckOut\PaymentMethod.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
