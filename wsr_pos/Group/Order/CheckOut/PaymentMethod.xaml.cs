@@ -153,6 +153,8 @@ namespace wsr_pos
 		{
 			if (PaymentMethodSelected != null)
 			{
+				Close();
+
 				if (sender == mCashButton)
 				{
 					PaymentMethodSelected(Order.PaymentMethod.Cash);
@@ -165,8 +167,6 @@ namespace wsr_pos
 				{
 					PaymentMethodSelected(Order.PaymentMethod.Transfer);
 				}
-
-				Close();
 			}
 		}
 
